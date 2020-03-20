@@ -16,12 +16,12 @@ def businesslist(request):
     business_select = []
 
     if request.method =='POST':
-         form = businessSearchForm(request.POST)
+         form = BusinessSearchForm(request.POST)
          if form.is_valid():
              business_select = form.search_input(request)
 
     else:
-          form = businessSearchForm()
+          form = BusinessSearchForm()
 
     if len(business_select) == 0:
         business_list = masterRecord.objects.all()
