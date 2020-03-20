@@ -30,7 +30,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'www.virtualcocktail.org',
     '127.0.0.1',
-    'wvwalkingtour.herokuapp.com',
+    'virtualcocktail.herokuapp.com',
 ]
 
 
