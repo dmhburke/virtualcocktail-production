@@ -70,6 +70,19 @@ def setcocktails(request, business_name):
 #=== CONFIRM PAYMENT AND ENABLE SOCIAL===
 def confirmation(request):
 
+    result = gateway.transaction.sale({
+        "amount": request.form["quantity"]*15,
+        "payment_method_nonce": request.form["nonce"],
+        "options": {
+          "submit_for_settlement": True,
+          "venmo": {
+            "profile_id": YOUR_VENMO_PROFILE_ID
+          }
+        },
+    "device_data": request.form["device_data"]
+    })
+
+
     business_name = request.session['business_name']
     number_output = transactionRecord.objects.latest('number_input').number_input
 

@@ -1,0 +1,31 @@
+<div class="rest-name">L'Artusi</div>
+<div class="form-container">
+  <form id="donate_form">
+    <div class = "form-label">Message for restuarant</div>
+    <input type="text-area" class="text-form" id="message" name="message" placeholder="Thanks so much">
+    <div class = "form-label">Quantity</div>
+    <input type="input" class="text-form" id="quantity" name="quantity" placeholder="1">
+    <div class = "total-text">Total: $15</div>
+    <input type="hidden" id="nonce" name="nonce">
+    <input type="hidden" id="device_data" name="device_data">
+    <button type="submit" class="submit-button" id="pay-button" onclick="window.location.href = '/confirmation';">Pay Now</button>
+  </form>
+</div>
+ <div id="dropin-container"></div>
+ <button id="submit-button">Select Payment Method</button>
+<script>
+var button = document.querySelector('#submit-button');
+
+braintree.dropin.create({
+  authorization: 'sandbox_s9zvtq2d_snk9pzv46hv7tkdb',
+  container: '#dropin-container',
+  venmo:{}
+}, function (createErr, instance) {
+  button.addEventListener('click', function () {
+  instance.requestPaymentMethod(function (requestPaymentMethodErr, payload) {
+    $("#nonce").value = payload.nonce;
+    $("#device_data").value = payload.deviceData;
+  });
+  });
+});
+</script>
