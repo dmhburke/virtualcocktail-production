@@ -69,19 +69,30 @@ def setcocktails(request, business_name):
 
 #=== CONFIRM PAYMENT AND ENABLE SOCIAL===
 def confirmation(request):
+    #== import payment library from braintree ==
+    import braintree
 
+    #== create oayment gateway object using braintree account keys ==
+    gateway = braintree.BraintreeGateway(
+    braintree.Configuration(
+        braintree.Environment.Sandbox,
+        merchant_id="snk9pzv46hv7tkdb",
+        public_key="p77ssqjzvyv7388r",
+        private_key="c564c7143c467ed9548ab23ec4d86208"
+        )
+    )
+
+    #== create payment using "nonce" (which is the unique payment authorization code) from cront end  ==
     result = gateway.transaction.sale({
         "amount": request.form["quantity"]*15,
         "payment_method_nonce": request.form["nonce"],
         "options": {
           "submit_for_settlement": True,
           "venmo": {
-            "profile_id": YOUR_VENMO_PROFILE_ID
           }
         },
     "device_data": request.form["device_data"]
     })
-
 
     business_name = request.session['business_name']
     number_output = transactionRecord.objects.latest('number_input').number_input
