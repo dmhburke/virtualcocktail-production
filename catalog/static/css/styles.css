@@ -1,4 +1,27 @@
+/* DEFINE CUSTOM FONTS */
+@font-face {
+  font-family: 'Brand_Font';
+  src: local('Brand_Font'),
+       url('/static/fonts/Alba_Brand.TTF') format("truetype");
+     }
+
+/* SET CSS VARIABLES */
+
+:root {
+  --brandColorMain: #F2F2F2; /* Update HEX CODE with chosen color */
+  --brandFont: 'Brand_Font', cursive; /* App font style = XXXX */
+}
+
+/* Define global standards */
+
 * {
   font-family: verdana;
   font-size: 16px;
+}
+
+/* EXAMPLE CSS VARIABLE APPLICATION */
+
+#example_ID {
+  font-family: var(--brandFont);
+  background-color: var(--brandColorMain);
 }
