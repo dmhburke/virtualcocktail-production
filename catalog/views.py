@@ -73,7 +73,7 @@ def confirmation(request):
     #== import payment library from braintree ==
     import braintree
 
-    #== create oayment gateway object using braintree account keys ==
+    #== create payment gateway object using braintree account keys ==
     gateway = braintree.BraintreeGateway(
     braintree.Configuration(
         braintree.Environment.Sandbox,
@@ -82,25 +82,21 @@ def confirmation(request):
         private_key="c564c7143c467ed9548ab23ec4d86208"
         )
     )
-    print('completed braintree gateway')
 
     if request.method =='POST':
 
+        #== pulling required variables directly from request ==
+        # == DB TO UPDATE TO LINK CORRECTLY WITH FORMS.PY ==
         nonce = request.POST.get('nonce')
-        amount = request.POST.get('number_input')
+        number_input = request.POST.get('number_input')
+        amount = int(number_input) * 15
         device_data = request.POST.get('device_data')
 
 
-        form = OrderForm(request.POST)
-        print('compeleted form definition')
-        #if form.is_valid():
-        print('form is valid')
-        #nonce = form['nonce'].value()
-        #amount = form['number_input'].value()
-        #device_data = form['device_data'].value()
+        # == DB TO de-comment following lines for reference to form.py
 
-        print(nonce)
-        print(device_data)
+        #form = OrderForm(request.POST)
+        #if form.is_valid():
 
         #== create payment using "nonce" (which is the unique payment authorization code) from cront end  ==
         result = gateway.transaction.sale({
@@ -108,12 +104,16 @@ def confirmation(request):
             "payment_method_nonce": nonce,
             "options": {
                 "submit_for_settlement": True,
-                "venmo": {}
+                "venmo": {"profile_id": 'sandbox_s9zvtq2d_snk9pzv46hv7tkdb'
+                }
             },
-            "device_data": device_data
+            "device_data": device_data,
+            "custom_fields": {
+                # DB TO REPLACE PLAVEHODLER BELOW WITH Business NAme
+                "restaurant_name": "PLACEHOLDER RESTAURANT NAME"
+            }
         })
     else:
-        print('form not valid')
         form = OrderForm()
 
     #business_name = request.session['business_name']
@@ -123,7 +123,6 @@ def confirmation(request):
     #'business_name': business_name,
     #'number_output': number_output,
     }
-    print('got right to the end')
 
     return render(request, 'confirmation.html', context=context)
 
