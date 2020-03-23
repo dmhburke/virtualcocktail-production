@@ -8,6 +8,7 @@
 /* SET CSS VARIABLES */
 
 :root {
+
   --brandColorMain: #0d19c2; /* Update HEX CODE with chosen color */
   --brandFont: 'Brand_Font', cursive; /* App font style = XXXX */
 }
