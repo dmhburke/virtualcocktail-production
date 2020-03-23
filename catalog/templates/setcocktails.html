@@ -1,18 +1,27 @@
+{% extends "_baseTemplate.html" %}
+
+{% block content %}
+
+{% load static %}
+
 <div class="rest-name">L'Artusi</div>
 <div class="form-container">
-  <form id="donate_form">
+  <form id="donate_form" action="confirmation" method="POST">
+    {% csrf_token %}
     <div class = "form-label">Message for restuarant</div>
     <input type="text-area" class="text-form" id="message" name="message" placeholder="Thanks so much">
     <div class = "form-label">Quantity</div>
-    <input type="input" class="text-form" id="quantity" name="quantity" placeholder="1">
+    <input type="input" class="text-form" id="number_input" name="number_input" placeholder="1">
     <div class = "total-text">Total: $15</div>
     <input type="hidden" id="nonce" name="nonce">
     <input type="hidden" id="device_data" name="device_data">
-    <button type="submit" class="submit-button" id="pay-button" onclick="window.location.href = '/confirmation';">Pay Now</button>
+    <button type="submit" class="submit-button" id="pay-button">Pay Now</button>
   </form>
 </div>
  <div id="dropin-container"></div>
  <button id="submit-button">Select Payment Method</button>
+
+
 <script>
 var button = document.querySelector('#submit-button');
 
@@ -23,9 +32,13 @@ braintree.dropin.create({
 }, function (createErr, instance) {
   button.addEventListener('click', function () {
   instance.requestPaymentMethod(function (requestPaymentMethodErr, payload) {
-    $("#nonce").value = payload.nonce;
-    $("#device_data").value = payload.deviceData;
+    document.getElementById("nonce").value = payload.nonce
+    document.getElementById("device_data").value = payload.deviceData
+    //$("#nonce").value = payload.nonce;
+    //$("#device_data").value = payload.deviceData;
   });
   });
 });
 </script>
+
+{% endblock %}

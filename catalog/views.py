@@ -6,7 +6,7 @@ from django.db.models import Q
 from catalog.models import masterRecord, businessRecord, transactionRecord, addBusiness
 
 #Import forms here
-from catalog.forms import BusinessSearchForm, BusinessSearchForm, AddBusinessForm
+from catalog.forms import BusinessSearchForm, BusinessSearchForm, AddBusinessForm, OrderForm
 
 # Create your views here.
 
@@ -38,31 +38,32 @@ def businesslist(request):
     return render(request, 'businesslist.html', context=context)
 
 # ===SET COCKTAIL NUMBERS AND SEND TO VENMO===
-def setcocktails(request, business_name):
+def setcocktails(request):
 
-    business_name = businessRecord.objects.get(business_name=business_name)
+    #business_name = businessRecord.objects.get(business_name=business_name)
 
-    business_image = business_name.background_image
+    #business_image = business_name.background_image
 
-    if request.method =='POST':
-         form = OrderForm(request.POST)
-         if form.is_valid():
-            post = form.save(commit=False)
-            post.business_name = business_name
-            post.number_input = post.number_input
-            post.amount = post.number_input * 15
-            post.save()
-            return redirect('confirmation')
+    #if request.method =='POST':
+    #     form = OrderForm(request.POST)
+    #     if form.is_valid():
 
-    else:
-          form = OrderForm()
+    #        post = form.save(commit=False)
+    #        post.business_name = business_name
+    #        post.number_input = post.number_input
+    #        post.amount = post.number_input * 15
+    #        post.save()
+    #        return redirect('confirmation')
 
-    request.session['business_name'] = business_name.business_name
+    #else:
+    #      form = OrderForm()
+
+    #request.session['business_name'] = business_name.business_name
 
     context = {
-    'business_name': business_name,
-    'business_image': business_image,
-    'form': form,
+    #'business_name': business_name,
+    #'business_image': business_image,
+    #'form': form,
     }
 
     return render(request, 'setcocktails.html', context=context)
@@ -81,26 +82,48 @@ def confirmation(request):
         private_key="c564c7143c467ed9548ab23ec4d86208"
         )
     )
+    print('completed braintree gateway')
 
-    #== create payment using "nonce" (which is the unique payment authorization code) from cront end  ==
-    result = gateway.transaction.sale({
-        "amount": request.form["quantity"]*15,
-        "payment_method_nonce": request.form["nonce"],
-        "options": {
-          "submit_for_settlement": True,
-          "venmo": {
-          }
-        },
-    "device_data": request.form["device_data"]
-    })
+    if request.method =='POST':
 
-    business_name = request.session['business_name']
-    number_output = transactionRecord.objects.latest('number_input').number_input
+        nonce = request.POST.get('nonce')
+        amount = request.POST.get('number_input')
+        device_data = request.POST.get('device_data')
+
+
+        form = OrderForm(request.POST)
+        print('compeleted form definition')
+        #if form.is_valid():
+        print('form is valid')
+        #nonce = form['nonce'].value()
+        #amount = form['number_input'].value()
+        #device_data = form['device_data'].value()
+
+        print(nonce)
+        print(device_data)
+
+        #== create payment using "nonce" (which is the unique payment authorization code) from cront end  ==
+        result = gateway.transaction.sale({
+            "amount": amount,
+            "payment_method_nonce": nonce,
+            "options": {
+                "submit_for_settlement": True,
+                "venmo": {}
+            },
+            "device_data": device_data
+        })
+    else:
+        print('form not valid')
+        form = OrderForm()
+
+    #business_name = request.session['business_name']
+    #number_output = transactionRecord.objects.latest('number_input').number_input
 
     context = {
-    'business_name': business_name,
-    'number_output': number_output,
+    #'business_name': business_name,
+    #'number_output': number_output,
     }
+    print('got right to the end')
 
     return render(request, 'confirmation.html', context=context)
 
