@@ -1,4 +1,309 @@
+/* DEFINE CUSTOM FONTS */
+@font-face {
+  font-family: 'Brand_Font';
+  src: local('Brand_Font'),
+       url('/static/fonts/Alba_Brand.TTF') format("truetype");
+     }
+
+/* SET CSS VARIABLES */
+
+:root {
+  --brandColorMain: #0d19c2; /* Update HEX CODE with chosen color */
+  --brandFont: 'Brand_Font', cursive; /* App font style = XXXX */
+}
+
+/* Define global standards */
+
 * {
-  font-family: verdana;
+  font-family: var(--brandFont);
   font-size: 16px;
+}
+
+/* EXAMPLE CSS VARIABLE APPLICATION */
+
+#example_ID {
+  font-family: var(--brandFont);
+  background-color: var(--brandColorMain);
+}
+
+body {
+  margin: 0;
+}
+
+.test {
+  height: 50px;
+  width: 50px;
+  background-color: blue;
+}
+
+.margin-wrapper {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    max-width: 1000px;
+    margin: auto;
+    text-align: center;
+}
+
+.nav-logo {
+    width: 90%;
+    max-width: 600px;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    margin: auto;
+}
+.nav-logo > img {
+    width: 100%;
+}
+
+.nav-burger {
+    height: 4rem;
+    width: auto;
+    position: absolute;
+    left: 1rem;
+    top: 0;
+    padding-top: 0.5rem;
+}
+
+.nav-burger > i {
+    font-size: 3rem;
+    color: white;
+}
+
+.footer {
+    width: 100%;
+    padding-top: 2rem;
+    text-align: center;
+    overflow: hidden;
+    padding-bottom: 5rem;
+}
+
+
+.nav-bar {
+    overflow:hidden;
+    background-color: var(--brandColorMain);
+    height: auto;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    left: 0;
+    width: 100%; /* Full width */
+    text-align: center;
+    z-index: 9;
+}
+
+.gray-bottom {
+    border-bottom: 1px solid lightgray;
+}
+
+.theme-color {
+    background-color: #00648F;
+    color: white;
+}
+
+.overlay-nav {
+    height: 100%;
+    width: 100%;
+    display: none;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    background-color: white;
+}
+
+.close-icon > i {
+    font-size: 3rem;
+    color: white;
+}
+
+.close-icon {
+    height: 4rem;
+    width: auto;
+    position: absolute;
+    left: 1rem;
+    top: -0.5rem;
+    padding-top: 1rem;
+}
+
+.overlay-menu {
+    margin-top: 60%;
+    padding-left: 0.5rem;
+    color: var(--brandColorMain);
+    font-size: 1.3rem;
+}
+
+.footer {
+    width: 100%;
+    padding-top: 2rem;
+    text-align: center;
+    overflow: hidden;
+    padding-bottom: 5rem;
+    background-color: var(--brandColorMain);
+}
+
+.main {
+    padding-top: 9rem;
+    width: 100%;
+    overflow: hidden;
+}
+
+.search-input {
+  width: 100%;
+  height: 2.75rem;
+  margin: auto;
+  position: relative;
+}
+
+.search-form {
+  width: 70%;
+  font-size: 0.75rem;
+  padding: 0.5rem 0 0.5rem 1rem;
+  line-height: 1.75rem;
+  position: absolute;
+  color: #a6a6a6;
+  background-color: #f3f6fc;
+  left: 0;
+  border-radius: 1rem 0 0 1rem;
+  border: none;
+}
+
+.search-form:focus {
+  outline: none;
+}
+
+.search-button {
+  width: 30%;
+  font-size: 0.75rem;
+  padding: 0.5rem 1rem 0.5rem 0rem;
+  line-height: 1.75rem;
+  position: absolute;
+  right: 0;
+  border-radius: 0 1rem 1rem 0;
+  border: none;
+  background-color: var(--brandColorMain);
+  color: white;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: left;
+    margin-top: 1rem;
+    margin-bottom: 12rem;
+}
+
+.rest-card {
+    flex: 50%;
+    max-width: 50%;
+
+}
+
+.rest-block {
+  height: auto;
+  width: 90%;
+  margin: 5%;
+  padding-bottom: 0.75rem;
+  box-shadow: 1px 1px 1px 1px #a6a6a6 ;
+}
+
+.rest-img {
+  width: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.rest-img > img {
+  width: 100%;
+  height: 6.5rem;
+  object-fit: cover;
+}
+
+.rest-img-hero {
+  width: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.rest-img-hero > img {
+  width: 100%;
+  height: 9rem;
+  object-fit: cover;
+  border-radius: 1rem 1rem 0 0;
+}
+
+.rest-name {
+  color: var(--brandColorMain);
+  padding-top: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+.rest-location {
+  font-size: 0.6rem;
+  color: #a6a6a6;
+  padding-left: 0.5rem;
+}
+
+.form-container {
+height: 300px;;
+border-radius: 1rem;
+box-shadow: 0px 0px 2px 2px #a6a6a6;
+margin-top: 2rem;
+text-align: center;
+
+}
+
+.name-hero {
+font-size: 1.5rem;
+color:  var(--brandColorMain);
+margin-bottom: 1rem;
+}
+
+.cocktails-selector-row {
+  width: 100%;
+  height: 2rem;;
+  background-color: red;
+  position: relative;
+}
+
+.selector-label {
+  text-align: left;
+  line-height: 2rem;
+  padding-left: 0.5rem;
+  color: var(--brandColorMain);
+  font-size: 0.75rem;
+  position: absolute;
+  width: 65%;
+  left: 0;
+  background-color: orange;
+}
+
+.selector-result {
+  height: 2rem;
+  position: absolute;
+  right: 0;
+  width: 35%;
+  line-height: 2rem;
+  text-align: center;
+  font-size: 0.75rem;
+}
+
+
+
+@media screen and (max-width: 1000px) and (min-width: 600px) {
+  .overlay-menu {
+    margin-top: 18rem;
+  }
+  .main {
+    padding-top: 200px;
+  }
+
+}
+
+@media screen and (min-width: 1000px) {
+  .overlay-menu {
+    margin-top: 18rem;
+  }
+  .main {
+    padding-top: 200px;
+  }
+
 }

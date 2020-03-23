@@ -45,13 +45,34 @@ block in any subsequent page (to update the text to be page-specific) -->
   <meta property="og:title" content="VirtualCocktail">
 	<meta property="og:description" content="Help your favorite local restaurant">
 
+  <!-- google icons for use in nav bar -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
 </head>
 
 <body>
 
-<!-- MOBILE CONTAINER: Sets up auto centered div width-fitted to mobile screen. DOES NOT SET VERTICAL HEIGHT -->
-<div class=mobileContainer>
+  <div class="nav-bar">
+    <div class="nav-logo"><img src="{% static 'main_logo.png' %}"></div>
+    <div class="nav-burger" onclick="openNav()"><i class="material-icons">menu</i></div>
+  </div>
 
+  <div class="overlay-nav" id="overlay">
+    <div class="nav-bar">
+        <div class="nav-logo"><img src="{% static 'main_logo.png' %}"></div>
+        <div class="close-icon" onclick="closeNav()"><i class="material-icons">close</i></div>
+    </div>
+    <div class="margin-wrapper">
+      <div class="overlay-menu">
+          <p>Add a business</p>
+          <p>About us</p>
+          <p>Back to Virtual Cocktail</p>
+      </div>
+    </div>
+  </div>
+
+<!-- MOBILE CONTAINER: Sets up auto centered div width-fitted to mobile screen. DOES NOT SET VERTICAL HEIGHT -->
+  <div class="main">
 <!--
 **MAIN CONTENT**
 Each page extends this template and pipes in content within the content block
@@ -61,6 +82,18 @@ Each page extends this template and pipes in content within the content block
   {% endblock %}
 
   </div>
+
+  <div class="footer"></div>
+
+  <script>
+    function openNav() {
+        document.getElementById("overlay").style.display = "block";
+    }
+
+    function closeNav() {
+        document.getElementById("overlay").style.display = "none";
+    }
+</script>
 
 </body>
 </html>

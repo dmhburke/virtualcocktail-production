@@ -40,23 +40,11 @@ def businesslist(request):
 # ===SET COCKTAIL NUMBERS AND SEND TO VENMO===
 def setcocktails(request):
 
+    # DB to uncomment - AG does not have database entries for this to work
+
     #business_name = businessRecord.objects.get(business_name=business_name)
 
     #business_image = business_name.background_image
-
-    #if request.method =='POST':
-    #     form = OrderForm(request.POST)
-    #     if form.is_valid():
-
-    #        post = form.save(commit=False)
-    #        post.business_name = business_name
-    #        post.number_input = post.number_input
-    #        post.amount = post.number_input * 15
-    #        post.save()
-    #        return redirect('confirmation')
-
-    #else:
-    #      form = OrderForm()
 
     #request.session['business_name'] = business_name.business_name
 
@@ -84,19 +72,11 @@ def confirmation(request):
     )
 
     if request.method =='POST':
-
-        #== pulling required variables directly from request ==
-        # == DB TO UPDATE TO LINK CORRECTLY WITH FORMS.PY ==
+        #== pulling required variables directly from form request ==
         nonce = request.POST.get('nonce')
         number_input = request.POST.get('number_input')
         amount = int(number_input) * 15
         device_data = request.POST.get('device_data')
-
-
-        # == DB TO de-comment following lines for reference to form.py
-
-        #form = OrderForm(request.POST)
-        #if form.is_valid():
 
         #== create payment using "nonce" (which is the unique payment authorization code) from cront end  ==
         result = gateway.transaction.sale({
@@ -113,15 +93,19 @@ def confirmation(request):
                 "restaurant_name": "PLACEHOLDER RESTAURANT NAME"
             }
         })
-    else:
-        form = OrderForm()
 
-    #business_name = request.session['business_name']
-    #number_output = transactionRecord.objects.latest('number_input').number_input
+        #business_name = request.session['business_name']
+        #number_output = transactionRecord.objects.latest('number_input').number_input
+
+        if result.is_success:
+            print('success')
+            # DB ADD TRANSACTION DETAILS TO DATABASE
+        else:
+            print('failure')
+            # return redirect('failure')
 
     context = {
     #'business_name': business_name,
-    #'number_output': number_output,
     }
 
     return render(request, 'confirmation.html', context=context)

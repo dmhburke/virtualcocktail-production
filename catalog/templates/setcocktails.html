@@ -4,8 +4,25 @@
 
 {% load static %}
 
+<div class="margin-wrapper">
+  <div class="form-container">
+    <div class="rest-img-hero"><img src="{% static 'placeholder_rest.png' %}"></div>
+      <div class="margin-wrapper">
+        <div class="name-hero">Minetta Tavern</div>
+        <div class="cocktails-selector-row">
+          <div class="selector-label">Add virtual cocktails</div>
+          <div class="selector-result">1</div>
+        </div>
+        <div class="cocktails-selector-row">
+          <div class="selector-label">Total</div>
+          <div class="selector-result">$15</div>
+        </div>
+      </div>
+  </div>
+</div>
+
 <div class="rest-name">L'Artusi</div>
-<div class="form-container">
+<div class="form-container-2">
   <form id="donate_form" action="confirmation" method="POST">
     {% csrf_token %}
     <div class = "form-label">Message for restuarant</div>
@@ -20,6 +37,8 @@
 </div>
  <div id="dropin-container"></div>
  <button id="submit-button">Select Payment Method</button>
+
+
 
 
 <script>
