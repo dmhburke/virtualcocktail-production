@@ -6,7 +6,7 @@ from django.db.models import Q
 from catalog.models import masterRecord, businessRecord, transactionRecord, addBusiness
 
 #Import forms here
-from catalog.forms import BusinessSearchForm, BusinessSearchForm, AddBusinessForm
+from catalog.forms import BusinessSearchForm, BusinessSearchForm, AddBusinessForm, OrderForm
 
 # Create your views here.
 
@@ -38,44 +38,74 @@ def businesslist(request):
     return render(request, 'businesslist.html', context=context)
 
 # ===SET COCKTAIL NUMBERS AND SEND TO VENMO===
-def setcocktails(request, business_name):
+def setcocktails(request):
 
-    business_name = businessRecord.objects.get(business_name=business_name)
+    # DB to uncomment - AG does not have database entries for this to work
 
-    business_image = business_name.background_image
+    #business_name = businessRecord.objects.get(business_name=business_name)
 
-    if request.method =='POST':
-         form = OrderForm(request.POST)
-         if form.is_valid():
-            post = form.save(commit=False)
-            post.business_name = business_name
-            post.number_input = post.number_input
-            post.amount = post.number_input * 15
-            post.save()
-            return redirect('confirmation')
+    #business_image = business_name.background_image
 
-    else:
-          form = OrderForm()
-
-    request.session['business_name'] = business_name.business_name
+    #request.session['business_name'] = business_name.business_name
 
     context = {
-    'business_name': business_name,
-    'business_image': business_image,
-    'form': form,
+    #'business_name': business_name,
+    #'business_image': business_image,
+    #'form': form,
     }
 
     return render(request, 'setcocktails.html', context=context)
 
 #=== CONFIRM PAYMENT AND ENABLE SOCIAL===
 def confirmation(request):
+    #== import payment library from braintree ==
+    import braintree
 
-    business_name = request.session['business_name']
-    number_output = transactionRecord.objects.latest('number_input').number_input
+    #== create payment gateway object using braintree account keys ==
+    gateway = braintree.BraintreeGateway(
+    braintree.Configuration(
+        braintree.Environment.Sandbox,
+        merchant_id="snk9pzv46hv7tkdb",
+        public_key="p77ssqjzvyv7388r",
+        private_key="c564c7143c467ed9548ab23ec4d86208"
+        )
+    )
+
+    if request.method =='POST':
+        #== pulling required variables directly from form request ==
+        nonce = request.POST.get('nonce')
+        number_input = request.POST.get('number_input')
+        amount = int(number_input) * 15
+        device_data = request.POST.get('device_data')
+
+        #== create payment using "nonce" (which is the unique payment authorization code) from cront end  ==
+        result = gateway.transaction.sale({
+            "amount": amount,
+            "payment_method_nonce": nonce,
+            "options": {
+                "submit_for_settlement": True,
+                "venmo": {"profile_id": 'sandbox_s9zvtq2d_snk9pzv46hv7tkdb'
+                }
+            },
+            "device_data": device_data,
+            "custom_fields": {
+                # DB TO REPLACE PLAVEHODLER BELOW WITH Business NAme
+                "restaurant_name": "PLACEHOLDER RESTAURANT NAME"
+            }
+        })
+
+        #business_name = request.session['business_name']
+        #number_output = transactionRecord.objects.latest('number_input').number_input
+
+        if result.is_success:
+            print('success')
+            # DB ADD TRANSACTION DETAILS TO DATABASE
+        else:
+            print('failure')
+            # return redirect('failure')
 
     context = {
-    'business_name': business_name,
-    'number_output': number_output,
+    #'business_name': business_name,
     }
 
     return render(request, 'confirmation.html', context=context)
