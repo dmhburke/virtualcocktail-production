@@ -8,7 +8,7 @@
   <div class="form-container">
     <div class="rest-img-hero"><img src="{% static 'placeholder_rest.png' %}"></div>
       <div class="margin-wrapper">
-        <div class="name-hero">Minetta Tavern</div>
+        <div class="name-hero">Minetta Tavern</div> <!--{{business_name}}-->
         <div class="cocktails-selector-row">
           <div class="selector-label">Add virtual cocktails</div>
           <div class="selector-result">1</div>
@@ -25,7 +25,7 @@
 <div class="form-container-2">
   <form id="donate_form" action="confirmation" method="POST">
     {% csrf_token %}
-    <div class = "form-label">Message for restuarant</div>
+    <div class = "form-label">Message for restaurant</div>
     <input type="text-area" class="text-form" id="message" name="message" placeholder="Thanks so much">
     <div class = "form-label">Quantity</div>
     <input type="input" class="text-form" id="number_input" name="number_input" placeholder="1">
