@@ -9,6 +9,8 @@
 
 :root {
   --brandColorMain: #0d19c2; /* Update HEX CODE with chosen color */
+  --brandColorSecondary: #f75a84; /* Update HEX CODE with chosen color */
+  --TextSecondary: #7f7f7f; /* Update HEX CODE with chosen color */
   --brandFont: 'Brand_Font', cursive; /* App font style = XXXX */
 }
 
@@ -39,6 +41,13 @@ body {
 .margin-wrapper {
     padding-left: 1rem;
     padding-right: 1rem;
+    max-width: 1000px;
+    margin: auto;
+    text-align: center;
+}
+.margin-wrapper-form {
+    padding-left: 5%;
+    padding-right: 5%;
     max-width: 1000px;
     margin: auto;
     text-align: center;
@@ -75,6 +84,8 @@ body {
     text-align: center;
     overflow: hidden;
     padding-bottom: 5rem;
+    margin-top: 6rem;
+    z-index: -1;
 }
 
 
@@ -128,7 +139,12 @@ body {
     margin-top: 60%;
     padding-left: 0.5rem;
     color: var(--brandColorMain);
-    font-size: 1.3rem;
+    font-size: 1.8rem;
+    text-align: left;
+}
+
+.overlay-menu > p {
+  font-size: 1.4rem;
 }
 
 .footer {
@@ -146,6 +162,10 @@ body {
     overflow: hidden;
 }
 
+.search-bar {
+  margin-top: 1rem;
+}
+
 .search-input {
   width: 100%;
   height: 2.75rem;
@@ -159,7 +179,6 @@ body {
   padding: 0.5rem 0 0.5rem 1rem;
   line-height: 1.75rem;
   position: absolute;
-  color: #a6a6a6;
   background-color: #f3f6fc;
   left: 0;
   border-radius: 1rem 0 0 1rem;
@@ -243,11 +262,13 @@ body {
 }
 
 .form-container {
-height: 300px;;
+height: auto;
 border-radius: 1rem;
 box-shadow: 0px 0px 2px 2px #a6a6a6;
 margin-top: 2rem;
 text-align: center;
+padding-bottom: 0.2rem;
+margin-bottom: 0.2rem;
 
 }
 
@@ -255,12 +276,12 @@ text-align: center;
 font-size: 1.5rem;
 color:  var(--brandColorMain);
 margin-bottom: 1rem;
+margin-top: 0.5rem;
 }
 
 .cocktails-selector-row {
   width: 100%;
   height: 2rem;;
-  background-color: red;
   position: relative;
 }
 
@@ -269,11 +290,10 @@ margin-bottom: 1rem;
   line-height: 2rem;
   padding-left: 0.5rem;
   color: var(--brandColorMain);
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   position: absolute;
   width: 65%;
   left: 0;
-  background-color: orange;
 }
 
 .selector-result {
@@ -283,9 +303,148 @@ margin-bottom: 1rem;
   width: 35%;
   line-height: 2rem;
   text-align: center;
-  font-size: 0.75rem;
+  font-size: 0.9rem;
 }
 
+.selector-block {
+  width: 33%;
+  float:left;
+  line-height: 2rem;
+  font-size: 0.9rem;
+}
+
+.gray {
+  color: #7f7f7f;
+}
+
+.theme {
+  color: var(--brandColorMain);
+}
+
+.border-lines {
+  border-top: 1px solid #a6a6a6;
+  border-bottom: 1px solid #a6a6a6;
+}
+
+.authorize-button {
+  width: 60%;
+  border-radius: 0.5rem;
+  line-height: 1.5rem;
+  font-size: 1rem;
+  margin: auto;
+}
+
+#dropin-container {
+  height: auto;
+}
+
+[data-braintree-id="choose-a-way-to-pay"] {
+  display: none;
+}
+
+.add-friends-label {
+  text-align: left;
+  font-size: 0.8rem;
+  color: var(--brandColorMain);
+  padding-left: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.add-friends-form {
+  width: 95%;
+  border: none;
+  font-size: 0.75rem;
+  padding: 0.5rem 0 0.5rem 1rem;
+  line-height: 1.75rem;
+  background-color: #f3f6fc;
+}
+
+.add-friends-form:focus {
+  outline: none;
+}
+
+#authorize-button {
+  width: 90%;
+  font-size: 0.75rem;
+  padding: 0.5rem 1rem 0.5rem 0rem;
+  line-height: 1.75rem;
+  right: 0;
+  border-radius: 1rem;
+  border: none;
+  background-color: var(--brandColorMain);
+  color: white;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+  margin-right: 5%;
+  margin-left: 5%;
+}
+
+.confirm-hero {
+  width: 100%;
+  font-size: 0.75rem;
+  padding: 0.5rem 0rem 0.5rem 0rem;
+  background-color: var(--brandColorSecondary);
+  color: white;
+  line-height: 1.75rem;
+}
+
+.thanks-text {
+  width: 90%;
+  padding: 5%;
+  color:var(--TextSecondary);
+  font-size: 0.75rem;
+  text-align: left;
+}
+
+.vc-thanks {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  color: var(--brandColorMain);
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.separator {
+  width: 65%;
+  border-top: solid 1px var(--TextSecondary);
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  display: inline-block;
+}
+
+.secondary {
+  color: var(--brandColorSecondary);
+}
+
+.post-button {
+  text-align: center;
+  width: 100%;
+  font-size: 0.75rem;
+  padding: 0.5rem 0rem 0.5rem 0rem;
+  line-height: 1.75rem;
+  border-radius: 1rem;
+  background-color: var(--brandColorMain);
+  color: white;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.confirm-footer {
+  text-align: center;
+}
+
+.small {
+  font-size: 0.75rem;
+}
+.footer-text {
+  width: 90%;
+  padding: 0 5% 5% 5%;
+  color:var(--TextSecondary);
+  font-size: 0.75rem;
+  text-align: center;
+}
 
 
 @media screen and (max-width: 1000px) and (min-width: 600px) {

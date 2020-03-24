@@ -6,43 +6,38 @@
 
 <div class="margin-wrapper">
   <div class="form-container">
-    <div class="rest-img-hero"><img src="{% static 'placeholder_rest.png' %}"></div>
-      <div class="margin-wrapper">
-        <div class="name-hero">Minetta Tavern</div>
-        <div class="cocktails-selector-row">
-          <div class="selector-label">Add virtual cocktails</div>
-          <div class="selector-result">1</div>
+    <form id="donate_form" action="confirmation" method="POST">
+      {% csrf_token %}
+      <div class="rest-img-hero"><img src="{% static 'placeholder_rest.png' %}"></div>
+        <div class="margin-wrapper-form">
+          <div class="name-hero">Minetta Tavern</div>
+          <div class="cocktails-selector-row">
+            <div class="selector-label theme">Add virtual cocktails</div>
+            <div class="selector-result theme">
+                <div class="selector-block" id="minus" onclick="minus()">-</div>
+                <div class="selector-block" id="display_count">1</div>
+                <div class="selector-block" id="plus" onclick="plus()">+</div>
+            </div>
+          </div>
+          <div class="cocktails-selector-row">
+            <div class="selector-label gray">Total</div>
+            <div class="selector-result gray border-lines" id="value">$15</div>
+          </div>
+          <div id="dropin-container"></div>
+          <div class="add-friends-label">Include friends in your order!</div>
+          <input type="input" class="add-friends-form" id="add-friends-form" name="add-friends-form" placeholder="gordon@ramsay.com, danny@meyer.com">
+          <input type="hidden" id="number_input" name="number_input" value="1">
+          <input type="hidden" id="nonce" name="nonce">
+          <input type="hidden" id="device_data" name="device_data">
         </div>
-        <div class="cocktails-selector-row">
-          <div class="selector-label">Total</div>
-          <div class="selector-result">$15</div>
-        </div>
-      </div>
+      </form>
+      <button id="authorize-button">Order Your Virtual Cocktails</button>
   </div>
 </div>
 
-<div class="rest-name">L'Artusi</div>
-<div class="form-container-2">
-  <form id="donate_form" action="confirmation" method="POST">
-    {% csrf_token %}
-    <div class = "form-label">Message for restuarant</div>
-    <input type="text-area" class="text-form" id="message" name="message" placeholder="Thanks so much">
-    <div class = "form-label">Quantity</div>
-    <input type="input" class="text-form" id="number_input" name="number_input" placeholder="1">
-    <div class = "total-text">Total: $15</div>
-    <input type="hidden" id="nonce" name="nonce">
-    <input type="hidden" id="device_data" name="device_data">
-    <button type="submit" class="submit-button" id="pay-button">Pay Now</button>
-  </form>
-</div>
- <div id="dropin-container"></div>
- <button id="submit-button">Select Payment Method</button>
-
-
-
 
 <script>
-var button = document.querySelector('#submit-button');
+var button = document.querySelector('#authorize-button');
 
 braintree.dropin.create({
   authorization: 'sandbox_s9zvtq2d_snk9pzv46hv7tkdb',
@@ -51,13 +46,37 @@ braintree.dropin.create({
 }, function (createErr, instance) {
   button.addEventListener('click', function () {
   instance.requestPaymentMethod(function (requestPaymentMethodErr, payload) {
-    document.getElementById("nonce").value = payload.nonce
-    document.getElementById("device_data").value = payload.deviceData
+    document.getElementById("nonce").value = payload.nonce;
+    document.getElementById("device_data").value = payload.deviceData;
+    document.getElementById("donate_form").submit();
     //$("#nonce").value = payload.nonce;
     //$("#device_data").value = payload.deviceData;
   });
   });
 });
+
+function plus() {
+            var current = document.getElementById("display_count").innerHTML;
+            current = parseInt(current) + 1;
+            document.getElementById("display_count").innerHTML = current;
+            var value = current * 15;
+            var display = '$' + value;
+            document.getElementById("value").innerHTML = display;
+            document.getElementById("number_input").value = current;
+        }
+
+function minus() {
+          var current = document.getElementById("display_count").innerHTML;
+          current = parseInt(current);
+          if (current > 0) {
+            current = current - 1;
+            document.getElementById("display_count").innerHTML = current
+            var value = current * 15;
+            var display = '$' + value;
+            document.getElementById("value").innerHTML = display;
+            document.getElementById("number_input").value = current
+          }
+        }
 </script>
 
 {% endblock %}
