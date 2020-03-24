@@ -26,9 +26,6 @@ class OrderForm(forms.ModelForm):
         model = transactionRecord
         fields = ('number_input',)
 
-
-
-
 class BusinessSearchForm(forms.Form):
     find_business = forms.CharField(required=False)
 

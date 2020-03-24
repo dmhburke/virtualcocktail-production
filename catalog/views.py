@@ -119,7 +119,7 @@ def confirmation(request):
 
     return render(request, 'confirmation.html', context=context)
 
-# ===XXXX===
+# === FORM FOR USERS TO ADD OR REQUEST A NEW BUSINESS ===
 def submitbusiness(request):
 
     if request.method =='POST':
