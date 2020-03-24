@@ -30,6 +30,8 @@ def businesslist(request):
         Q(business_name__business_name__contains=business_select)
         ).order_by('-total_amount')
 
+    # request.session['business_name'] = business_name
+
     context = {
     'form': form,
     'business_list': business_list,
@@ -40,16 +42,14 @@ def businesslist(request):
 # ===SET COCKTAIL NUMBERS AND SEND TO VENMO===
 def setcocktails(request):
 
-    # DB to uncomment - AG does not have database entries for this to work
-
-    #business_name = businessRecord.objects.get(business_name=business_name)
-
-    #business_image = business_name.background_image
-
-    #request.session['business_name'] = business_name.business_name
+    #DB comment - solves for AG admin issue by setting default
+    try:
+        business_name = businessRecord.objects.get(business_name=business_name).business_name
+    except:
+        business_name = "Up and Down"
 
     context = {
-    #'business_name': business_name,
+    'business_name': business_name,
     #'business_image': business_image,
     #'form': form,
     }
@@ -58,6 +58,12 @@ def setcocktails(request):
 
 #=== CONFIRM PAYMENT AND ENABLE SOCIAL===
 def confirmation(request):
+
+    # SET business name
+    #business_name = request.session['business_name']
+    business_name = businessRecord.objects.get(business_name="Minetta Tavern")
+    business_name_string = str(business_name)
+
     #== import payment library from braintree ==
     import braintree
 
@@ -89,28 +95,31 @@ def confirmation(request):
             },
             "device_data": device_data,
             "custom_fields": {
-                # DB TO REPLACE PLAVEHODLER BELOW WITH Business NAme
-                "restaurant_name": "PLACEHOLDER RESTAURANT NAME"
+                "restaurant_name": business_name_string,
             }
         })
 
-        #business_name = request.session['business_name']
-        #number_output = transactionRecord.objects.latest('number_input').number_input
+        transacted_amount = result.transaction.amount
+        number_output = transacted_amount / 15
 
         if result.is_success:
             print('success')
-            # DB ADD TRANSACTION DETAILS TO DATABASE
+            transactionRecord.objects.create(
+                business_name=business_name,
+                number_input=number_output,
+                amount=transacted_amount
+            )
         else:
             print('failure')
             # return redirect('failure')
 
     context = {
-    #'business_name': business_name,
+    'business_name': business_name,
     }
 
     return render(request, 'confirmation.html', context=context)
 
-# ===XXXX===
+# === FORM FOR USERS TO ADD OR REQUEST A NEW BUSINESS ===
 def submitbusiness(request):
 
     if request.method =='POST':

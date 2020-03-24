@@ -1,0 +1,45 @@
+{% extends '_baseTemplate.html' %}
+
+{% block content %}
+{% load static %}
+
+<form method="post"> <!-- IMPORTANT: this tag + endtag + csrf token must be included -->
+  {% csrf_token %}
+
+<div id=formBox style="margin-top: 0px; background-color: white;"> <!-- this styling is placholder only -->
+  Business name<br> <!-- You can style these however you want (i.e. in divs) these breaks are placeholder only  -->
+  {{form.business_name}}<br><br> <!-- this is the business name input NOTE: you can style these input fields using the input tag, or the unique id (hover in inspect mode)-->
+  Is this your business?<br>
+  <div id=isYoursInput>{{form.is_yours}}</div> <!-- this is the yes/no input -->
+  <div id=isYourBusinessBox style="height: 0px; overflow: hidden;"> <!-- IMPORTANT: this id is used in the javascript - needs to be set with "height: 0px; overflow: hidden;" -->
+  <br>Great! <br>
+  What's your best phone number?<br>
+  {{form.phone_number}}<br> <!-- this is the phone input -->
+  What's your best email?<br>
+  {{form.email_address}}<br> <!-- this is the email input -->
+  What's your business' Instagram handle?<br>
+  {{form.instagram_handle}}<br> <!-- this is the instagram input -->
+  We'll be in touch asap to get you on Virtual Cocktail!
+  </div>
+  <br>
+  <button id=homepageInputButton type=submit>Submit</button></div>
+
+</form> <!-- IMPORTANT: this endtag token must be included -->
+
+<!-- This is the javascript - IMPORTANT: the id names must match their equivalents above -->
+<script>
+
+  var input = document.getElementById("isYoursInput"),
+    display = document.getElementById("isYourBusinessBox"),
+    input_value = document.getElementById("id_is_yours");
+
+  input.oninput = function(){
+    if (input_value.value == "YES") {
+      display.style.height = "270px";
+    };
+    };
+
+</script>
+
+
+{% endblock %}

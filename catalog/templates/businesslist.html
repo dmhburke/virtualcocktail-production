@@ -6,44 +6,46 @@
 
 <div class="margin-wrapper">
   <div class="search-bar">
+    <!-- Form for business search -->
     <form id="search-query" method="POST">
+      {% csrf_token %}
       <div class="search-input">
-        <input type="input" class="search-form" id="search-form" name="find_business" placeholder="Find by name or filter by postcode">
+
+        <input type="input" class="search-form" id="search-form" name="{{form.business_select}}" placeholder="Find by name or filter by postcode">
+
         <button type="submit" class="search-button" id="search">Search</button>
       </div>
     </form>
+
   </div>
   <div class="results-container">
     <div class="row">
 
-<!-- DB TO UNCOMMENT -->
-    <!--  {% for business in business_list %} -->
-      <div class="rest-card">
-          <div class="rest-block">
-            <!-- DB TO ADD business_list variables -->
-            <div class="rest-img"><img src="{% static 'placeholder_rest.png' %}"></div>
-            <div class="rest-name">Rubirosa</div>
-            <div class="rest-location">New York City</div>
-        </div>
-      </div>
-<!-- DB TO UNCOMMENT -->
-      <!-- {%endfor%} -->
+    {% for business in business_list %}
+     <div class="rest-card">
+         <div class="rest-block">
+           <div class="rest-img"><img src="{% static 'placeholder_rest.png' %}"></div>
+           <div class="rest-name">{{business.business_name}}</div>
+           <div class="rest-location">New York City</div>
+       </div>
+     </div>
+     {% endfor %}
 
-      <div class="rest-card">
+      <!-- <div class="rest-card">
           <div class="rest-block">
             <div class="rest-img"><img src="{% static 'placeholder_rest.png' %}"></div>
             <div class="rest-name">Rubirosa</div>
             <div class="rest-location">New York City</div>
         </div>
-      </div>
+      </div> -->
 
-      <div class="rest-card">
+      <!-- <div class="rest-card">
           <div class="rest-block">
             <div class="rest-img"><img src="{% static 'placeholder_rest.png' %}"></div>
             <div class="rest-name">Rubirosa</div>
             <div class="rest-location">New York City</div>
         </div>
-      </div>
+      </div> -->
 
     </div>
 
