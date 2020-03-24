@@ -6,8 +6,10 @@
 
 <div class="margin-wrapper">
   <div class="form-container">
-    <form id="donate_form" action="confirmation" method="POST">
+    <!-- <form id="donate_form" action="confirmation" method="POST"> -->
+       <form method="POST">
       {% csrf_token %}
+
       <div class="rest-img-hero"><img src="{% static 'placeholder_rest.png' %}"></div>
         <div class="margin-wrapper-form">
           <div class="name-hero">Minetta Tavern</div> <!--{{business_name}}-->
@@ -15,7 +17,7 @@
             <div class="selector-label theme">Add virtual cocktails</div>
             <div class="selector-result theme">
                 <div class="selector-block" id="minus" onclick="minus()">-</div>
-                <div class="selector-block" id="display_count">1</div>
+                <div class="selector-block" id="display_count">{{form.number_input}}</div>
                 <div class="selector-block" id="plus" onclick="plus()">+</div>
             </div>
           </div>
@@ -26,12 +28,14 @@
           <div id="dropin-container"></div>
           <div class="add-friends-label">Include friends in your order!</div>
           <input type="input" class="add-friends-form" id="add-friends-form" name="add-friends-form" placeholder="gordon@ramsay.com, danny@meyer.com">
-          <input type="hidden" id="number_input" name="number_input" value="1">
           <input type="hidden" id="nonce" name="nonce">
           <input type="hidden" id="device_data" name="device_data">
         </div>
+        <!-- NOTE: BOTH BUTTONS NEED PLACEMENT AND STYLING -->
+        <button type=submit style="position: absolute; bottom: 100px; height: 100px; width: 200px; background-color: blue">Submit payment</button>
       </form>
-      <button id="authorize-button">Order Your Virtual Cocktails</button>
+      <button id="authorize-button">Select payment</button>
+
   </div>
 </div>
 
@@ -55,25 +59,25 @@ braintree.dropin.create({
 });
 
 function plus() {
-            var current = document.getElementById("display_count").innerHTML;
+            var current = document.getElementById("id_number_input").value;
             current = parseInt(current) + 1;
-            document.getElementById("display_count").innerHTML = current;
+            document.getElementById("id_number_input").value = current;
             var value = current * 15;
             var display = '$' + value;
             document.getElementById("value").innerHTML = display;
-            document.getElementById("number_input").value = current;
+            // document.getElementById("number_input").value = current;
         }
 
 function minus() {
-          var current = document.getElementById("display_count").innerHTML;
+          var current = document.getElementById("id_number_input").value;
           current = parseInt(current);
           if (current > 0) {
             current = current - 1;
-            document.getElementById("display_count").innerHTML = current
+            document.getElementById("id_number_input").value = current
             var value = current * 15;
             var display = '$' + value;
             document.getElementById("value").innerHTML = display;
-            document.getElementById("number_input").value = current
+            // document.getElementById("number_input").value = current
           }
         }
 </script>

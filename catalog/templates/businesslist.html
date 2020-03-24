@@ -23,11 +23,12 @@
 
     {% for business in business_list %}
      <div class="rest-card">
+        <a href="{% url 'setcocktails' business.business_name %}"
          <div class="rest-block">
            <div class="rest-img"><img src="{% static 'placeholder_rest.png' %}"></div>
            <div class="rest-name">{{business.business_name}}</div>
            <div class="rest-location">New York City</div>
-       </div>
+       </div></a>
      </div>
      {% endfor %}
 
