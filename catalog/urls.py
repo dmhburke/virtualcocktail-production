@@ -3,12 +3,12 @@ from . import views
 
 urlpatterns = [
     # LANDING PAGE - contains list of businesses
-    path('', views.businesslist, name='businesslist.html'),
+    path('', views.businesslist, name='businesslist'),
     # PAYMENT PAGE - handles amounts and Venmo integration
-    path('setcocktails', views.setcocktails, name='setcocktails.html'),
+    path('setcocktails', views.setcocktails, name='setcocktails'),
     # CONFIRMATION PAGE - confirms amount and enables social sharing
-    path('confirmation', views.confirmation, name='confirmation.html'),
+    path('confirmation', views.confirmation, name='confirmation'),
     # SUBMIT BUSINESS - form to receive new business submissions
-    path('submitbusiness', views.submitbusiness, name='submitbusiness.html'),
+    path('submitbusiness', views.submitbusiness, name='submitbusiness'),
 
 ]

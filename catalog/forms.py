@@ -19,11 +19,12 @@ class AddBusinessForm(forms.ModelForm):
 
 class OrderForm(forms.ModelForm):
     number_input = forms.IntegerField(label='', required=False)
+    nonce = forms.CharField(required=True)
+    device_data = forms.CharField(required=True)
 
     class Meta:
         model = transactionRecord
         fields = ('number_input',)
-
 
 class BusinessSearchForm(forms.Form):
     find_business = forms.CharField(required=False)
