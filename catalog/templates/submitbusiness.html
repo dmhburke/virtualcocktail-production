@@ -3,28 +3,40 @@
 {% block content %}
 {% load static %}
 
-<form method="post"> <!-- IMPORTANT: this tag + endtag + csrf token must be included -->
-  {% csrf_token %}
+<div class="margin-wrapper">
+  <div class="form-container">
+    <div class="margin-wrapper-form">
+    <div class="form-header">Thanks for submitting a new business to The Virtual Cocktail!</div>
+    <div class="form-explainer">For now we’re still doing this manually, so please add the details below and we’ll get in touch as soon as possible.</div>
+      <form method="post"> <!-- IMPORTANT: this tag + endtag + csrf token must be included -->
+        {% csrf_token %}
+      <div id=formBox style="margin-top: 0px; background-color: white;"> <!-- this styling is placholder only -->
+        <div class="form-label main-color">What is the name of the business?</div> <!-- You can style these however you want (i.e. in divs) these breaks are placeholder only  -->
+        {{form.business_name}} <!-- this is the business name input NOTE: you can style these input fields using the input tag, or the unique id (hover in inspect mode)-->
+        <div class="form-label main-color">Is this your business?</div>
+        <div id=isYoursInput>{{form.is_yours}}
+            <div class="arrow"><i class="material-icons">expand_more</i></div>
+        </div> <!-- this is the yes/no input -->
+        <div id=isYourBusinessBox style="height: 0px; overflow: hidden;"> <!-- IMPORTANT: this id is used in the javascript - needs to be set with "height: 0px; overflow: hidden;" -->
+        <br>Great! <br>
+        <div class="form-label secondary">What's your best phone number?</div>
+        {{form.phone_number}} <!-- this is the phone input -->
+        <div class="form-label secondary">What's your best email?</div>
+        {{form.email_address}}<br> <!-- this is the email input -->
+        <div class="form-label secondary">What's your business' Instagram handle?</div>
+        {{form.instagram_handle}}
+       <!-- this is the instagram input -->
+        </div>
+        <button id=homepageInputButton type=submit>Submit</button></div>
+        <div class="in-touch">
+            We'll be in touch asap to get you on Virtual Cocktail!
+        </div>
+      </form> <!-- IMPORTANT: this endtag token must be included -->
 
-<div id=formBox style="margin-top: 0px; background-color: white;"> <!-- this styling is placholder only -->
-  Business name<br> <!-- You can style these however you want (i.e. in divs) these breaks are placeholder only  -->
-  {{form.business_name}}<br><br> <!-- this is the business name input NOTE: you can style these input fields using the input tag, or the unique id (hover in inspect mode)-->
-  Is this your business?<br>
-  <div id=isYoursInput>{{form.is_yours}}</div> <!-- this is the yes/no input -->
-  <div id=isYourBusinessBox style="height: 0px; overflow: hidden;"> <!-- IMPORTANT: this id is used in the javascript - needs to be set with "height: 0px; overflow: hidden;" -->
-  <br>Great! <br>
-  What's your best phone number?<br>
-  {{form.phone_number}}<br> <!-- this is the phone input -->
-  What's your best email?<br>
-  {{form.email_address}}<br> <!-- this is the email input -->
-  What's your business' Instagram handle?<br>
-  {{form.instagram_handle}}<br> <!-- this is the instagram input -->
-  We'll be in touch asap to get you on Virtual Cocktail!
+      </div>
   </div>
-  <br>
-  <button id=homepageInputButton type=submit>Submit</button></div>
+</div>
 
-</form> <!-- IMPORTANT: this endtag token must be included -->
 
 <!-- This is the javascript - IMPORTANT: the id names must match their equivalents above -->
 <script>
@@ -35,7 +47,9 @@
 
   input.oninput = function(){
     if (input_value.value == "YES") {
-      display.style.height = "270px";
+      display.style.height = "290px";
+    } else {
+      display.style.height = "0px";
     };
     };
 
