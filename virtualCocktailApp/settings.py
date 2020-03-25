@@ -154,7 +154,7 @@ from os import environ as CONFIG
 #AWS_PRELOAD_METADATA=True
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'catalog/static/media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'catalog/static/media/')
 
 # Heroku: Update database configuration from $DATABASE_URL.
 import dj_database_url

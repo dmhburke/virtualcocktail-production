@@ -18,8 +18,12 @@ from django.urls import path
 from django.urls import include
 from django.views.generic import RedirectView
 # Use static() to add url mapping to serve static files during development (only)
+# from . import views, settings
+from django.contrib.staticfiles.urls import static
+
 from django.conf import settings
 from django.conf.urls.static import static
+# from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),

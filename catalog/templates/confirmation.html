@@ -6,12 +6,22 @@
 
 <div class="margin-wrapper">
   <div class="form-container">
-      <div class="rest-img-hero"><img src="{% static 'placeholder_rest.png' %}"></div>
+      <div class="rest-img-hero" style="background-image: url({{ business_ref.background_image.url }}); background-size: cover; background-position: 50% 50%">
+        <!-- <img src="{% static 'placeholder_rest.png' %}"> -->
+      </div>
         <div class="margin-wrapper-form">
-          <div class="name-hero">{{business_name}}</div>
+          <div class="name-hero">{{business_name}}</div> <!---->
           <!-- Add number of cocktails variable from context -->
-          <div class="confirm-hero">Your {{number_input}} virtual cocktails are served!</div>
-          <div class="thanks-text">From everyone at Minetta Tavern, thank you for supporting your local businesses through this unprecedented challenge.<br><br>
+          <div class="confirm-hero">Your {{number_input}}
+
+            {% if number_input > 1 %}
+            virtual cocktails are
+            {% elif number_input == 1 %}
+            virtual cocktail is
+            {% endif %}
+            served!</div>
+
+          <div class="thanks-text">From everyone at {{business_name}}, thank you for supporting your local businesses through this unprecedented challenge.<br><br>
 Funds like yours help ensure we can continue to support staff and meet continuing costs, until we can open once again.
         </div>
         <div class="vc-thanks">Thank you from the Virtual Cocktail team!</div>
@@ -20,7 +30,7 @@ Funds like yours help ensure we can continue to support staff and meet continuin
     <div class="confirm-footer">
       <div class="separator"></div>
       <div class="footer-text">To share this on Instagram simply screenshot this card and hit the button below. <br><br>
-    And feel free to include <span class="secondary small">@minettatavern</span> and <span class="secondar smally">@virtualcocktailorg</span> – we’d love to hear from you!
+    And feel free to include <span class="secondary small">@insert_insta</span> and <span class="secondar smally">@virtualcocktailorg</span> – we’d love to hear from you!
      <a href="instagram://"><div class="post-button">Post to Instagram!</div></a>
    </div>
 </div>

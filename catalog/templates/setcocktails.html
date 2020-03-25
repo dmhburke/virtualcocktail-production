@@ -10,9 +10,11 @@
        <form method="POST">
       {% csrf_token %}
 
-      <div class="rest-img-hero"><img src="{% static 'placeholder_rest.png' %}"></div>
+      <div class="rest-img-hero" style="background-image: url({{business_ref.background_image.url}}); background-size: cover; background-position: 50% 50%">
+        <!-- <img src="{% static 'placeholder_rest.png' %}"> -->
+      </div>
         <div class="margin-wrapper-form">
-          <div class="name-hero">Minetta Tavern</div> <!--{{business_name}}-->
+          <div class="name-hero">{{business_name}}</div>
           <div class="cocktails-selector-row">
             <div class="selector-label theme">Add virtual cocktails</div>
             <div class="selector-result theme">
