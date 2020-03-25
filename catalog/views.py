@@ -27,9 +27,12 @@ def businesslist(request):
         business_list = masterRecord.objects.all()
     else:
         business_list = masterRecord.objects.filter(
-        Q(business_name__business_name__contains=business_select)
-        # | Q(business_name__postcode__contains=business_select) #NOTE: NEED TO UPDATE MODEL TO INCLUDE POSTCODE
+        Q(business_name__business_name__contains=business_select) | Q(business_name__postcode__contains=business_select) #NOTE: NEED TO UPDATE MODEL TO INCLUDE POSTCODE
         ).order_by('-total_amount')
+
+    # business_pic = addBusiness.objects.get(id=1).background_image
+    # print("<<PIC IS:>>")
+    # print(business_pic)
 
     context = {
     'form': form,
