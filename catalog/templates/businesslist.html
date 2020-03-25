@@ -10,45 +10,37 @@
     <form id="search-query" method="POST">
       {% csrf_token %}
       <div class="search-input">
-
         <!-- <input type="input" class="search-form" id="search-form" name="{{form.find_business}}" placeholder="Find by name or filter by postcode"> -->
         <div id=search-form style="height: 100%; width: 100%; display: inline-block">{{form.find_business}}</div>
-
         <button type="submit" class="search-button" id="search">Search</button>
       </div>
     </form>
-
   </div>
+
   <div class="results-container">
     <div class="row">
-
     {% for business in business_list %}
      <div class="rest-card">
-        <a href="{% url 'setcocktails' business.business_name %}" -->
+        <a href="{% url 'setcocktails' business.business_name %}">
+
          <div class="rest-block">
            <div class="rest-img" style="background-image: url({{business.business_name.background_image.url}}); background-size: cover; background-position: 50% 80%"></div>
            <div class="rest-name">{{business.business_name}}</div>
            <div class="rest-location">New York City</div>
-       </div></a>
+       </div>
+     </a>
      </div>
      {% endfor %}
 
-      <!-- <div class="rest-card">
+      <div class="rest-card">
+        <a href="submitbusiness">
           <div class="rest-block">
-            <div class="rest-img"><img src="{% static 'placeholder_rest.png' %}"></div>
-            <div class="rest-name">Rubirosa</div>
-            <div class="rest-location">New York City</div>
+            <div class="rest-img"><p>&#129335;</p></div>
+            <div class="rest-name">Not listed yet?</div>
+            <div class="add-link">Click here to add!</div>
         </div>
-      </div> -->
-
-      <!-- <div class="rest-card">
-          <div class="rest-block">
-            <div class="rest-img"><img src="{% static 'placeholder_rest.png' %}"></div>
-            <div class="rest-name">Rubirosa</div>
-            <div class="rest-location">New York City</div>
-        </div>
-      </div> -->
-
+      </div>
+      </a>
     </div>
 
 
