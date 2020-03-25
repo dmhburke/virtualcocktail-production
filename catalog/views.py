@@ -120,8 +120,6 @@ def confirmation(request):
     number_input = transactionRecord.objects.last().number_input
     business_ref = businessRecord.objects.get(business_name=business_name)
 
-    print(business_ref.background_image.url)
-
     context = {
     'business_name': business_name,
     'number_input': number_input,
@@ -138,7 +136,9 @@ def submitbusiness(request):
          if form.is_valid():
             post = form.save(commit=False)
             post.save()
-            return redirect('submitbusiness') # change to confirmation page
+            request.session['add_business_name'] = post.business_name
+            request.session['add_business_owner'] = post.is_yours
+            return redirect('submitbusinessconfirm') # change to confirmation page
     else:
           form = AddBusinessForm()
 
@@ -147,3 +147,24 @@ def submitbusiness(request):
     }
 
     return render(request, 'submitbusiness.html', context=context)
+
+#== CONFIRMATION PAGE FOLLOWING NEW BUSINESS SUBMIT ==
+def submitbusinessconfirm(request):
+
+    try:
+        add_business_name = request.session['add_business_name']
+    except:
+        add_business_name = "a new business"
+
+    try:
+        add_business_owner = request.session['add_business_owner']
+    except:
+        add_business_owner = "Unable to get"
+
+
+    context = {
+        'add_business_name': add_business_name,
+        'add_business_owner': add_business_owner,
+    }
+
+    return render(request, 'submitbusinessconfirm.html', context=context)
