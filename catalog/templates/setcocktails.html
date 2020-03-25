@@ -7,11 +7,10 @@
 <div class="margin-wrapper">
   <div class="form-container">
     <!-- <form id="donate_form" action="confirmation" method="POST"> -->
-       <form method="POST">
+       <form id=donate_form method="POST">
       {% csrf_token %}
 
       <div class="rest-img-hero" style="background-image: url({{business_ref.background_image.url}}); background-size: cover; background-position: 50% 50%">
-        <!-- <img src="{% static 'placeholder_rest.png' %}"> -->
       </div>
         <div class="margin-wrapper-form">
           <div class="name-hero">{{business_name}}</div>
@@ -34,9 +33,9 @@
           <input type="hidden" id="device_data" name="device_data">
         </div>
         <!-- NOTE: BOTH BUTTONS NEED PLACEMENT AND STYLING -->
-        <button type=submit style="position: absolute; bottom: 100px; height: 100px; width: 200px; background-color: blue">Submit payment</button>
+        <!-- <button type=submit id="authorize-button1">Order your virtual cocktails</button> <!--style="position: absolute; bottom: 100px; height: 100px; width: 200px; background-color: blue"-->
       </form>
-      <button id="authorize-button">Select payment</button>
+      <button id="authorize-button">Order your virtual cocktails!</button>
 
   </div>
 </div>
@@ -54,8 +53,7 @@ braintree.dropin.create({
     document.getElementById("nonce").value = payload.nonce;
     document.getElementById("device_data").value = payload.deviceData;
     document.getElementById("donate_form").submit();
-    //$("#nonce").value = payload.nonce;
-    //$("#device_data").value = payload.deviceData;
+
   });
   });
 });
@@ -82,6 +80,16 @@ function minus() {
             // document.getElementById("number_input").value = current
           }
         }
+
+var input = document.getElementById("display_count"),
+  display=document.getElementById("value"),
+  input_value = document.getElementById("id_number_input");
+
+input.oninput=function(){
+  update_value = input_value.value
+  display.innerHTML = '$' + update_value * 15;
+  };
+
 </script>
 
 {% endblock %}
