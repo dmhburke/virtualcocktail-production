@@ -8,8 +8,8 @@ from catalog.models import transactionRecord, addBusiness
 class AddBusinessForm(forms.ModelForm):
     business_name = forms.CharField(required=True)
     is_yours = forms.ChoiceField(choices=YES_NO, required=False)
-    phone_number = forms.CharField(required=True)
-    email_address = forms.CharField(required=True)
+    phone_number = forms.CharField(required=False)
+    email_address = forms.CharField(required=False)
     instagram_handle = forms.CharField(required=False)
 
     class Meta:
