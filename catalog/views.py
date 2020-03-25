@@ -28,9 +28,8 @@ def businesslist(request):
     else:
         business_list = masterRecord.objects.filter(
         Q(business_name__business_name__contains=business_select)
+        # | Q(business_name__postcode__contains=business_select) #NOTE: NEED TO UPDATE MODEL TO INCLUDE POSTCODE
         ).order_by('-total_amount')
-
-    # request.session['business_name'] = business_name
 
     context = {
     'form': form,
