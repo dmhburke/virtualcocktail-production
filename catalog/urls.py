@@ -10,5 +10,7 @@ urlpatterns = [
     path('confirmation', views.confirmation, name='confirmation'),
     # SUBMIT BUSINESS - form to receive new business submissions
     path('submitbusiness', views.submitbusiness, name='submitbusiness'),
+    # SUBMIT BIZ CONFIRMATION - page to route to after business submitted
+    path('submitbusinessconfirm', views.submitbusinessconfirm, name='submitbusinessconfirm'),
 
 ]
