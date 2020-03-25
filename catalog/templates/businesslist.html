@@ -11,7 +11,8 @@
       {% csrf_token %}
       <div class="search-input">
 
-        <input type="input" class="search-form" id="search-form" name="{{form.business_select}}" placeholder="Find by name or filter by postcode">
+        <!-- <input type="input" class="search-form" id="search-form" name="{{form.find_business}}" placeholder="Find by name or filter by postcode"> -->
+        <div id=search-form style="height: 100%; width: 100%; display: inline-block">{{form.find_business}}</div>
 
         <button type="submit" class="search-button" id="search">Search</button>
       </div>
