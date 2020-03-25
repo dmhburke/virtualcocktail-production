@@ -239,9 +239,12 @@ body {
 }
 
 .rest-img-hero {
+  height: 175px;
   width: 100%;
   background-position: center center;
   background-repeat: no-repeat;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
 }
 
 .rest-img-hero > img {

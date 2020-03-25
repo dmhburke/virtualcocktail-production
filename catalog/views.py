@@ -58,6 +58,7 @@ def setcocktails(request, business_name):
     )
 
     business_instance = businessRecord.objects.get(business_name=business_name)
+    business_ref = businessRecord.objects.get(business_name=business_name)
 
     # CREATE FORM
     if request.method =='POST':
@@ -106,6 +107,7 @@ def setcocktails(request, business_name):
     context = {
     'form': form,
     'business_name': business_name,
+    'business_ref': business_ref,
     }
 
     return render(request, 'setcocktails.html', context=context)
@@ -116,70 +118,14 @@ def confirmation(request):
     # define key variables
     business_name = request.session['business_name']
     number_input = transactionRecord.objects.last().number_input
+    business_ref = businessRecord.objects.get(business_name=business_name)
+
+    print(business_ref.background_image.url)
 
     context = {
     'business_name': business_name,
     'number_input': number_input,
-    }
-
-    # # SET business name
-    # #business_name = request.session['business_name']
-    # business_name = businessRecord.objects.get(business_name="Minetta Tavern")
-    # business_name_string = str(business_name)
-    #
-    # #== import payment library from braintree ==
-    # import braintree
-    #
-    # #== create payment gateway object using braintree account keys ==
-    # gateway = braintree.BraintreeGateway(
-    # braintree.Configuration(
-    #     braintree.Environment.Sandbox,
-    #     merchant_id="snk9pzv46hv7tkdb",
-    #     public_key="p77ssqjzvyv7388r",
-    #     private_key="c564c7143c467ed9548ab23ec4d86208"
-    #     )
-    # )
-    #
-    # if request.method =='POST':
-    #     #== pulling required variables directly from form request ==
-    #     nonce = request.POST.get('nonce')
-    #     number_input = request.POST.get('number_input')
-    #     amount = int(number_input) * 15
-    #     device_data = request.POST.get('device_data')
-    #
-    #     #== create payment using "nonce" (which is the unique payment authorization code) from cront end  ==
-    #     result = gateway.transaction.sale({
-    #         "amount": amount,
-    #         "payment_method_nonce": nonce,
-    #         "options": {
-    #             "submit_for_settlement": True,
-    #             "venmo": {"profile_id": 'sandbox_s9zvtq2d_snk9pzv46hv7tkdb'
-    #             }
-    #         },
-    #         "device_data": device_data,
-    #         "custom_fields": {
-    #             "restaurant_name": business_name_string,
-    #         }
-    #     })
-    #
-    #     transacted_amount = result.transaction.amount
-    #     number_output = transacted_amount / 15
-    #
-    #     if result.is_success:
-    #         print('success')
-    #         transactionRecord.objects.create(
-    #             business_name=business_name,
-    #             number_input=number_output,
-    #             amount=transacted_amount
-    #         )
-    #     else:
-    #         print('failure')
-    #         # return redirect('failure')
-    #
-    context = {
-    'business_name': business_name,
-    'number_input': number_input,
-
+    'business_ref': business_ref,
     }
 
     return render(request, 'confirmation.html', context=context)
