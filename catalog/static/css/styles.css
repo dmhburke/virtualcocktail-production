@@ -32,21 +32,26 @@ src: local('Text_Font'),
 
 button {
   font-family: var(--textFont);
+  max-width: 400px;
 }
 
 
 
 ::-webkit-input-placeholder {
   font-family: var(--textFont);
+  font-size: 0.75rem;
 }
 ::-moz-placeholder {
   font-family: var(--textFont);
+  font-size: 0.75rem;
 }
 :-ms-input-placeholder {
   font-family: var(--textFont);
+  font-size: 0.75rem;
 }
 ::placeholder {
   font-family: var(--textFont);
+  font-size: 0.75rem;
 }
 
 a {
@@ -168,7 +173,7 @@ body {
 }
 
 .overlay-menu {
-    margin-top: 60%;
+    margin-top: 3rem;
     padding-left: 0.5rem;
     color: var(--brandColorMain);
     font-size: 1.8rem;
@@ -188,8 +193,12 @@ body {
     background-color: var(--brandColorMain);
 }
 
+.nav-spacer {
+  display: hidden;
+}
+
 .main {
-    padding-top: 9rem;
+    padding-top: 1rem;
     width: 100%;
     overflow: hidden;
 }
@@ -223,8 +232,8 @@ body {
 
 .search-button {
   width: 30%;
-  font-size: 0.75rem;
-  padding: 0.5rem 1rem 0.5rem 0rem;
+  font-size: 1rem;
+  padding: 0.5rem;
   line-height: 1.75rem;
   position: absolute;
   right: 0;
@@ -240,12 +249,12 @@ body {
     text-align: left;
     margin-top: 1rem;
     margin-bottom: 12rem;
+
 }
 
 .rest-card {
     flex: 50%;
     max-width: 50%;
-
 }
 
 .rest-block {
@@ -316,6 +325,9 @@ margin-top: 2rem;
 text-align: center;
 padding-bottom: 0.2rem;
 margin-bottom: 0.2rem;
+max-width: 800px;
+margin-left: auto;
+margin-right: auto;
 }
 
 .add-link {
@@ -363,6 +375,7 @@ margin-top: 0.5rem;
 #id_number_input {
   line-height: 2rem;
   width: 100%;
+  font-size: 0.75rem;
   text-align: center;
   padding: 0;
 }
@@ -419,7 +432,7 @@ margin-top: 0.5rem;
 .add-friends-form {
   width: 95%;
   border: none;
-  font-size: 0.75rem;
+  font-size: 1rem;
   padding: 0.5rem 0 0.5rem 1rem;
   line-height: 1.75rem;
   background-color: #f3f6fc;
@@ -540,7 +553,7 @@ margin-top: 0.5rem;
 input {
   width: 95%;
   border: none;
-  font-size: 0.75rem;
+  font-size: 1rem;
   padding: 0.5rem 0 0.5rem 5%;
   line-height: 1.75rem;
   background-color: #f3f6fc;
@@ -628,22 +641,45 @@ option {
   text-align: left;
 }
 
+.bottom-margin {
+  margin-bottom: 10rem;
+}
+
 @media screen and (max-width: 1000px) and (min-width: 600px) {
   .overlay-menu {
-    margin-top: 18rem;
+    margin-top: 3rem;
   }
-  .main {
+
+  .rest-img-hero {
+    height: 250px;
+  }
+  * {
+    font-family: var(--textFont);
+    font-size: 20px;
+  }
+  /* .main {
     padding-top: 200px;
-  }
+  } */
 
 }
 
 @media screen and (min-width: 1000px) {
   .overlay-menu {
-    margin-top: 18rem;
+    margin-top: 3rem;
   }
-  .main {
+  .rest-img-hero {
+    height: 350px;
+  }
+  * {
+    font-family: var(--textFont);
+    font-size: 24px;
+  }
+  .rest-card {
+      flex: 33%;
+      max-width: 33%;
+  }
+  /* .main {
     padding-top: 200px;
-  }
+  } */
 
 }
