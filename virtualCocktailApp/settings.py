@@ -124,15 +124,16 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.0/howto/static-files/
+##== DEVELOPMENT SETTINGS - hashout for production
 
 STATIC_URL = '/static/'
 
-# DEPLOYMENT
-from os import environ as CONFIG
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'catalog/static/media/')
 
+##== PRODUCTION SETTINGS - hashout in development; note will have to set CONFIG settings in production
+
+# from os import environ as CONFIG
 #AWS_LOCATION = 'static'
 # AWS_ACCESS_KEY_ID = CONFIG['AWS_ACCESS_KEY_ID']
 # AWS_SECRET_ACCESS_KEY = CONFIG['AWS_SECRET_ACCESS_KEY']
@@ -153,10 +154,8 @@ from os import environ as CONFIG
 #AWS_DEFAULT_ACL = None
 #AWS_PRELOAD_METADATA=True
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'catalog/static/media/')
+## == HEROKU DATABASE SETTINGS - leave in for both dev and prod
 
-# Heroku: Update database configuration from $DATABASE_URL.
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
