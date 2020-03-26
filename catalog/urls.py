@@ -12,5 +12,7 @@ urlpatterns = [
     path('submitbusiness', views.submitbusiness, name='submitbusiness'),
     # SUBMIT BIZ CONFIRMATION - page to route to after business submitted
     path('submitbusinessconfirm', views.submitbusinessconfirm, name='submitbusinessconfirm'),
+    # ABOUT US - menu dropdown page
+    path('aboutus', views.aboutus, name='aboutus'),
 
 ]
