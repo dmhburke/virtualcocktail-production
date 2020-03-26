@@ -1,6 +1,9 @@
 #Import libraries and dependencies here
 from django.shortcuts import render, redirect
 from django.db.models import Q
+#email libraries
+from django.core.mail import send_mail
+from django.conf import settings
 
 #Import models here
 from catalog.models import masterRecord, businessRecord, transactionRecord, addBusiness
@@ -73,6 +76,7 @@ def setcocktails(request, business_name):
         #== pull Braintree variables directly from form ==
         nonce = request.POST.get('nonce')
         device_data = request.POST.get('device_data')
+        email_details = request.POST.get('add-friends-form')
 
         #== create payment using "nonce" (which is the unique payment authorization code) from cront end  ==
         result = gateway.transaction.sale({
@@ -91,6 +95,17 @@ def setcocktails(request, business_name):
         #== Check payment was successful
         if result.is_success:
             print('success')
+            ## Create email list
+            email_list = email_details.split(",")
+            # print(email_list)
+            ## send email to email list
+            send_mail(
+                'Your Virtual Cocktail is Served!',
+                'You\'ve just been included in an order on The Virtual Cocktail, a donation platform supporting local businesses through COVID-19. \n\nCheck us out at www.virtualcocktail.org and pay it forward by ordering some virtual cocktails on your next conference call! \n\nYours sincerely, \nThe Virtual Cocktail Team',
+                'virtualcocktailorg@gmail.com',
+                email_list,
+                fail_silently=False,
+            )
             post.save()
             return redirect('confirmation')
 
