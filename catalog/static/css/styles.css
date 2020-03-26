@@ -30,6 +30,25 @@ src: local('Text_Font'),
   font-size: 16px;
 }
 
+button {
+  font-family: var(--textFont);
+}
+
+
+
+::-webkit-input-placeholder {
+  font-family: var(--textFont);
+}
+::-moz-placeholder {
+  font-family: var(--textFont);
+}
+:-ms-input-placeholder {
+  font-family: var(--textFont);
+}
+::placeholder {
+  font-family: var(--textFont);
+}
+
 a {
   text-decoration: none;
 }
@@ -339,6 +358,13 @@ margin-top: 0.5rem;
   line-height: 2rem;
   text-align: center;
   font-size: 0.9rem;
+}
+
+#id_number_input {
+  line-height: 2rem;
+  width: 100%;
+  text-align: center;
+  padding: 0;
 }
 
 .selector-block {
