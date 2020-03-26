@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from os import environ as CONFIG
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -26,6 +27,15 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'cg#p$g+j9tax!#a3cup@1$8obt2_+&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 # DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
+
+#EMAIL SETTINGS
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'virtualcocktailorg@gmail.com'# UPDATE TO PERSONAL ACCOUNT
+EMAIL_HOST_PASSWORD = CONFIG['EMAIL_HOST_PASSWORD']# CREATE 'APP PASSWORD' TO USE GMAIL IN PRODUCTION
+
 
 ALLOWED_HOSTS = [
     # 'www.virtualcocktail.org',
@@ -133,7 +143,6 @@ STATIC_URL = '/static/'
 
 ##== PRODUCTION SETTINGS - hashout in development; need to CHANGE URLS.PY TO REMOVE STATIC REF; note will have to set CONFIG settings in production
 
-# from os import environ as CONFIG
 # AWS_LOCATION = 'static'
 # AWS_ACCESS_KEY_ID = CONFIG['AWS_ACCESS_KEY_ID']
 # AWS_SECRET_ACCESS_KEY = CONFIG['AWS_SECRET_ACCESS_KEY']
