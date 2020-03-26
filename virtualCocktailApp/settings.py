@@ -124,9 +124,11 @@ USE_L10N = True
 
 USE_TZ = True
 
-##== DEVELOPMENT SETTINGS - hashout for production and hashout URLS.PY for static reference
+##== DEVELOPMENT SETTINGS - hashout for production
 
 STATIC_URL = '/static/'
+
+##== NEXT go to urls.py and hashout static reference
 
 ##== PRODUCTION SETTINGS - hashout in development; need to CHANGE URLS.PY TO REMOVE STATIC REF; note will have to set CONFIG settings in production
 
@@ -140,7 +142,7 @@ STATIC_URL = '/static/'
 # AWS_S3_OBJECT_PARAMETERS = {
 #     'CacheControl': 'max-age=86400',
 # }
-# DEFAULT_FILE_STORAGE = '<<YOURAPPNAME>>.storage_backends.MediaStorage'
+# DEFAULT_FILE_STORAGE = 'virtualCocktailApp.storage_backends.MediaStorage'
 # STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 # STATICFILES_DIRS = [
 #    os.path.join(BASE_DIR, 'catalog/static'),
@@ -151,7 +153,7 @@ STATIC_URL = '/static/'
 # AWS_DEFAULT_ACL = None
 # AWS_PRELOAD_METADATA=True
 
-## == MEDIA ROOT SETTINGS
+## == MEDIA ROOT SETTINGS - leave in for both dev and prod
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'catalog/static/media/')
