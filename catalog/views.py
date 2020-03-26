@@ -168,3 +168,9 @@ def submitbusinessconfirm(request):
     }
 
     return render(request, 'submitbusinessconfirm.html', context=context)
+
+def aboutus(request):
+
+    context={}
+
+    return render(request, 'about.html', context=context)

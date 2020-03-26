@@ -58,6 +58,10 @@ a {
   text-decoration: none;
 }
 
+a:visited {
+    color: var(--brandColorMain);
+  }
+
 /* EXAMPLE CSS VARIABLE APPLICATION */
 
 #example_ID {

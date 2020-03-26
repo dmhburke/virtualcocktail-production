@@ -30,11 +30,11 @@ block in any subsequent page (to update the text to be page-specific) -->
 <!-- FAVICON: This section defines an icon to show in the browswer tab -->
 <link rel="icon"
     type="image/png"
-    href=""> <!--Best practice to save the icon (in png format) to an S3 bucket and point to that-->
+    href="https://db-virtualcocktail-production.s3.amazonaws.com/vcoIcon.png"> <!--Best practice to save the icon (in png format) to an S3 bucket and point to that-->
 
 <!-- HOMESCREEN APP: This section defines an icon to show on your mobile homescreen -->
 <link rel="apple-touch-icon"
-    href=""> <!--Best practice to save the icon (in png format) to an S3 bucket and point to that-->
+    href="https://db-virtualcocktail-production.s3.amazonaws.com/vcoIcon.png"> <!--Best practice to save the icon (in png format) to an S3 bucket and point to that-->
 
     <!--Braintree/Venmo payments SDK-->
   <script src="https://js.braintreegateway.com/web/dropin/1.22.1/js/dropin.min.js"></script>
@@ -53,7 +53,8 @@ block in any subsequent page (to update the text to be page-specific) -->
 <body>
 
   <div class="nav-bar">
-    <div class="nav-logo"><img src="{% static 'main_logo.png' %}"></div>
+    <a href="{% url 'businesslist' %}">
+    <div class="nav-logo"><img src="{% static 'main_logo.png' %}"></div></a>
     <div class="nav-burger" onclick="openNav()"><i class="material-icons">menu</i></div>
   </div>
   <div class="nav-spacer">
@@ -70,9 +71,9 @@ block in any subsequent page (to update the text to be page-specific) -->
     </div>
     <div class="margin-wrapper">
       <div class="overlay-menu">
-          <p>Add a business</p>
-          <p>About us</p>
-          <p class="secondary">Back to Virtual Cocktail</p>
+          <a href="{% url 'submitbusiness' %}"><p>Add a business</p></a>
+          <a href="{% url 'aboutus' %}"><p>About us</p></a>
+          <a href="{% url 'businesslist' %}"><p class="secondary">Back to Virtual Cocktail</p></a>
       </div>
     </div>
   </div>
