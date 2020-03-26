@@ -56,11 +56,17 @@ block in any subsequent page (to update the text to be page-specific) -->
     <div class="nav-logo"><img src="{% static 'main_logo.png' %}"></div>
     <div class="nav-burger" onclick="openNav()"><i class="material-icons">menu</i></div>
   </div>
+  <div class="nav-spacer">
+    <div class="nav-logo"><img src="{% static 'main_logo.png' %}"></div>
+  </div>
 
   <div class="overlay-nav" id="overlay">
     <div class="nav-bar">
         <div class="nav-logo"><img src="{% static 'main_logo.png' %}"></div>
         <div class="close-icon" onclick="closeNav()"><i class="material-icons">close</i></div>
+    </div>
+    <div class="nav-spacer">
+      <div class="nav-logo"><img src="{% static 'main_logo.png' %}"></div>
     </div>
     <div class="margin-wrapper">
       <div class="overlay-menu">

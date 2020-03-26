@@ -2,21 +2,24 @@
 {% load static %}
 
 {% block content %}
-<br><br>
-Thank you for submitting {{add_business_name}} to The Virtual Cocktail. <br><br>
 
-We'll be in touch with
-{% if add_business_owner == "YES" %}
-you at the contact details you provided in the next 24 hours to get you on the platform! <br><br>Look forward to speaking soon.
-{% else %}
-them in the next 24 hours to invite them onto our platform!
-{% endif %}
- <br><br>
+<div class="margin-wrapper">
+  <div class="form-container bottom-margin">
+    <div class="margin-wrapper-form">
+    <div class="form-header">Thank you for submitting {{add_business_name}} to The Virtual Cocktail.</div>
+    <div class="form-explainer">We'll be in touch with
+    {% if add_business_owner == "YES" %}
+    you at the contact details you provided in the next 24 hours to get you on the platform! <br><br>Look forward to speaking soon.
+    {% else %}
+    them in the next 24 hours to invite them onto our platform!
+    {% endif %}
+     <br><br>
 
-If you need to get in touch with us for any reason in the meantime, please contact us at hello@virtualcocktail.org, or on Instagram at @virtualcocktailorg
+    If you need to get in touch with us for any reason in the meantime, please contact us at hello@virtualcocktail.org, or on Instagram at @virtualcocktailorg</div>
+    <a href="{% url 'businesslist' %}"><div class="post-button">Return to homepage</div></a>
+      </div>
+  </div>
+</div>
 
-<!-- This can be deleted if we use logo as homepage button -->
-<br><br>
-<a href="{% url 'businesslist' %}">Back to homepage</a>
 
 {% endblock %}
