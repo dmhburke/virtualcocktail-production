@@ -77,6 +77,7 @@ def setcocktails(request, business_name):
         nonce = request.POST.get('nonce')
         device_data = request.POST.get('device_data')
         email_details = request.POST.get('add-friends-form')
+        full_payload = request.POST.get('full_payload')
 
         #== create payment using "nonce" (which is the unique payment authorization code) from cront end  ==
         result = gateway.transaction.sale({
@@ -94,14 +95,19 @@ def setcocktails(request, business_name):
         })
         #== Check payment was successful
         if result.is_success:
-            print('success')
+            print("SUCCESS")
+            cardholder_name = result.transaction.credit_card_details.cardholder_name
+            if cardholder_name == None:
+                payer_name = "A secret admirer"
+            else:
+                payer_name = cardholder_name
             ## Create email list
             email_list = email_details.split(",")
             # print(email_list)
             ## send email to email list
             send_mail(
                 'Your Virtual Cocktail is Served!',
-                'You\'ve just been included in an order on The Virtual Cocktail, a donation platform supporting local businesses through COVID-19. \n\nCheck us out at www.virtualcocktail.org and pay it forward by ordering some virtual cocktails on your next conference call! \n\nYours sincerely, \nThe Virtual Cocktail Team',
+                'Great news! {} has just bought you a virtual cocktail from {} on The Virtual Cocktail.\n\nThe Virtual Cocktail is a donation platform supporting local businesses through COVID-19.\n\nFind a business to support and order the next round at www.virtualcocktail.org.\n\nStay safe, support local businesses, and we hope to see you soon!\n\nThe Virtual Cocktail Team'.format(payer_name, business_instance),
                 'virtualcocktailorg@gmail.com',
                 email_list,
                 fail_silently=False,
