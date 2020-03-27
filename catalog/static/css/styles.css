@@ -198,7 +198,7 @@ body {
 }
 
 .nav-spacer {
-  display: hidden;
+  visibility: hidden;
 }
 
 .main {

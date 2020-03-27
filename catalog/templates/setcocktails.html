@@ -42,9 +42,9 @@
 
 <script>
 var button = document.querySelector('#authorize-button');
-
+var client_token = "{{client_token}}"
 braintree.dropin.create({
-  authorization: 'sandbox_s9zvtq2d_snk9pzv46hv7tkdb',
+  authorization: client_token,
   container: '#dropin-container',
   venmo:{}
 }, function (createErr, instance) {

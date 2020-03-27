@@ -60,6 +60,10 @@ def setcocktails(request, business_name):
         )
     )
 
+    #== Create Braintree customer token ==
+    client_token = gateway.client_token.generate({
+    })
+
     business_instance = businessRecord.objects.get(business_name=business_name)
     business_ref = businessRecord.objects.get(business_name=business_name)
 
@@ -85,8 +89,8 @@ def setcocktails(request, business_name):
             "payment_method_nonce": nonce,
             "options": {
                 "submit_for_settlement": True,
-                "venmo": {"profile_id": 'sandbox_s9zvtq2d_snk9pzv46hv7tkdb'
-                }
+                # "venmo": {"profile_id": 'sandbox_s9zvtq2d_snk9pzv46hv7tkdb'
+                # }
             },
             "device_data": device_data,
             "custom_fields": {
@@ -129,6 +133,7 @@ def setcocktails(request, business_name):
     'form': form,
     'business_name': business_name,
     'business_ref': business_ref,
+    'client_token': client_token,
     }
 
     return render(request, 'setcocktails.html', context=context)
