@@ -473,19 +473,23 @@ margin-top: 0.5rem;
 
 .thanks-text {
   width: 90%;
-  padding: 5%;
+  padding: 4% 5%;
   color:var(--TextSecondary);
   font-size: 0.75rem;
   text-align: left;
 }
 
 .vc-thanks {
-  margin-top: 1rem;
-  margin-bottom: 2rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.75rem;
   width: 100%;
-  color: var(--brandColorMain);
+  color: white;
   font-size: 0.75rem;
   font-weight: bold;
+  /* DB CSS */
+  height: 45px;
+  line-height: 45px;
+  background-color: var(--brandColorMain)
 }
 
 .separator {
@@ -513,7 +517,7 @@ margin-top: 0.5rem;
   border-radius: 1rem;
   background-color: var(--brandColorMain);
   color: white;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   margin-bottom: 2rem;
 }
 
@@ -648,6 +652,34 @@ option {
 .bottom-margin {
   margin-bottom: 10rem;
 }
+
+/* DB CSS */
+
+/* Confirmation page */
+#form-container-confirm {
+  margin-top: 0.25rem;
+}
+
+#name-hero-confirm {
+  margin-bottom: 0.5rem;
+}
+
+#separator-confirm {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+#insta-confirm {
+  font-size: 14px;
+  color: var(--brandColorSecondary);
+}
+
+#confirm-highlight-db {
+  color: #f75a84;
+  font-size: 14px;
+}
+
+
 
 @media screen and (max-width: 1000px) and (min-width: 600px) {
   .overlay-menu {
