@@ -142,7 +142,7 @@ STATIC_URL = '/static/'
 ##== NEXT go to urls.py and hashout static reference
 
 ##== PRODUCTION SETTINGS - hashout in development; need to CHANGE URLS.PY TO REMOVE STATIC REF; note will have to set CONFIG settings in production
-#
+
 # AWS_LOCATION = 'static'
 # AWS_ACCESS_KEY_ID = CONFIG['AWS_ACCESS_KEY_ID']
 # AWS_SECRET_ACCESS_KEY = CONFIG['AWS_SECRET_ACCESS_KEY']
