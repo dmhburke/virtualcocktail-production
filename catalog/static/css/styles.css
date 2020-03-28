@@ -33,6 +33,9 @@ src: local('Text_Font'),
 button {
   font-family: var(--textFont);
   max-width: 400px;
+  -webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
 }
 
 
@@ -439,7 +442,6 @@ margin-top: 0.5rem;
   font-size: 1rem;
   padding: 0.5rem 0 0.5rem 1rem;
   line-height: 1.75rem;
-  background-color: #f3f6fc;
 }
 
 .add-friends-form:focus {
@@ -566,6 +568,9 @@ input {
   line-height: 1.75rem;
   background-color: #f3f6fc;
   margin-bottom: 0.1rem;
+    -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 input:focus {
@@ -575,7 +580,7 @@ input:focus {
 #id_is_yours {
   width: 100%;
   border: none;
-  font-size: 0.75rem;
+  font-size: 1rem;
   padding: 0.75rem 0 0.75rem 10%;
   line-height: 1.75rem;
   background-color: #f3f6fc;
@@ -626,10 +631,11 @@ select {
     -webkit-appearance: none;
     -moz-appearance: none;
     width: 200px;
+    font-size: 1rem;
 }
 
 option {
-  font-size: 0.75rem;
+  font-size: 1rem;
   padding: 0;
   outline: none;
   border: none;
