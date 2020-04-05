@@ -659,6 +659,12 @@ option {
   margin-bottom: 10rem;
 }
 
+.home-explainer {
+  font-size: 1rem;
+  color: var(--brandColorMain);
+  text-align: center;
+}
+
 /* DB CSS */
 
 /* Confirmation page */
