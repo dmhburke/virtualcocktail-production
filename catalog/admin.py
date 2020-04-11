@@ -18,7 +18,7 @@ admin.site.register(businessRecord, businessRecordAdmin)
 
 #Define admin class - create business record
 class transactionRecordAdmin(admin.ModelAdmin):
-     list_display = ('date', 'business_name', 'number_input', 'amount',)
+     list_display = ('date', 'donor_name', 'business_name', 'email_list', 'number_input', 'amount',)
 
 # Register the admin class with the associated model
 admin.site.register(transactionRecord, transactionRecordAdmin)

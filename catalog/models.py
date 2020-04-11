@@ -24,7 +24,9 @@ class businessRecord(models.Model):
 
 class transactionRecord(models.Model):
     date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    donor_name = models.CharField(max_length=100, blank=True, null=True)
     business_name = models.ForeignKey('businessRecord', on_delete=models.CASCADE, blank=True, null=True)
+    email_list = models.CharField(max_length=200, blank=True, null=True)
     number_input = models.IntegerField(blank=True, null=True)
     amount = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)
 
