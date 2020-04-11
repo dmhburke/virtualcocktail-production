@@ -33,10 +33,6 @@ def businesslist(request):
         Q(business_name__business_name__contains=business_select) | Q(business_name__postcode__contains=business_select) #NOTE: NEED TO UPDATE MODEL TO INCLUDE POSTCODE
         ).order_by('-total_amount')
 
-    # business_pic = addBusiness.objects.get(id=1).background_image
-    # print("<<PIC IS:>>")
-    # print(business_pic)
-
     context = {
     'form': form,
     'business_list': business_list,
@@ -105,10 +101,12 @@ def setcocktails(request, business_name):
                 payer_name = "A secret admirer"
             else:
                 payer_name = cardholder_name
-            ## Create email list
+            #==add donor name and email details to db  ==
+            post.donor_name = payer_name
+            post.email_list = email_details
+            #== Create email list for sending ==
             email_list = email_details.split(",")
-            # print(email_list)
-            ## send email to email list
+            #== Send email to email list
             send_mail(
                 'Your Virtual Cocktail is Served!',
                 'Great news! {} has just bought you a virtual cocktail from {} on The Virtual Cocktail.\n\nThe Virtual Cocktail is a donation platform supporting local businesses through COVID-19.\n\nFind a business to support and order the next round at www.virtualcocktail.org.\n\nStay safe, support local businesses, and we hope to see you soon!\n\nThe Virtual Cocktail Team'.format(payer_name, business_instance),
