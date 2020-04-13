@@ -25,7 +25,7 @@ class OrderForm(forms.ModelForm):
         fields = ('number_input',)
 
 class BusinessSearchForm(forms.Form):
-    find_business = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Search by name or postcode'}))
+    find_business = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Search by name or zipcode'}))
 
     def search_input(self,request):
         businessSelect = self.cleaned_data['find_business']
