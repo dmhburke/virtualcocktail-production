@@ -105,7 +105,8 @@ def setcocktails(request, business_name):
             post.donor_name = payer_name
             post.email_list = email_details
             #== Create email list for sending ==
-            email_list = email_details.split(",")
+            import re
+            email_list = re.split(r'[;,\s]\s*', email_details)
             #== Send email to email list
             send_mail(
                 'Your Virtual Cocktail is Served!',
