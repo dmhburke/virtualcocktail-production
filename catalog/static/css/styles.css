@@ -54,7 +54,7 @@ appearance: none;
 }
 ::placeholder {
   font-family: var(--textFont);
-  font-size: 0.75rem;
+  font-size: 1rem;
 }
 
 a {
@@ -223,7 +223,7 @@ body {
 
 .search-form {
   width: 70%;
-  font-size: 0.75rem;
+  font-size: 1rem;
   padding: 0.5rem 0 0.5rem 1rem;
   line-height: 1.75rem;
   position: absolute;
@@ -231,7 +231,9 @@ body {
   left: 0;
   border-radius: 1rem 0 0 1rem;
   border: none;
+  color: var(--brandColorMain);
 }
+
 
 .search-form:focus {
   outline: none;
@@ -662,7 +664,13 @@ option {
 .home-explainer {
   font-size: 1rem;
   color: var(--brandColorMain);
-  text-align: center;
+  text-align: left;
+  padding-left: 10px;
+}
+
+#id_find_business {
+  padding-left: 8px;
+  color: grey;
 }
 
 /* DB CSS */
