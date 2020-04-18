@@ -49,8 +49,9 @@ block in any subsequent page (to update the text to be page-specific) -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <!--  PWA manifest file -->
-  <link rel="manifest" crossorigin="use-credentials" href="/static/manifest.json">
+  <link rel="manifest" crossorigin="use-credentials" href="{% static 'manifest.json' %}">
   <!-- PWA iOS enable standalone -->
+  <meta name="theme-color" content="#f75a84">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <!-- PWA iOS enable status bar override -->
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
