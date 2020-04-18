@@ -137,32 +137,32 @@ USE_TZ = True
 
 ##== DEVELOPMENT SETTINGS - hashout for production
 
-STATIC_URL = '/static/'
+# STATIC_URL = '/static/'
 
 ##== NEXT go to urls.py and hashout static reference
 
 ##== PRODUCTION SETTINGS - hashout in development; need to CHANGE URLS.PY TO REMOVE STATIC REF; note will have to set CONFIG settings in production --DBtest--
 
-# AWS_LOCATION = 'static'
-# AWS_ACCESS_KEY_ID = CONFIG['AWS_ACCESS_KEY_ID']
-# AWS_SECRET_ACCESS_KEY = CONFIG['AWS_SECRET_ACCESS_KEY']
-# AWS_STORAGE_BUCKET_NAME = CONFIG['AWS_STORAGE_BUCKET_NAME']
-# AWS_S3_CUSTOM_DOMAIN='%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-#
-# AWS_S3_OBJECT_PARAMETERS = {
-#     'CacheControl': 'max-age=86400',
-# }
-# DEFAULT_FILE_STORAGE = 'virtualCocktailApp.storage_backends.MediaStorage'
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-# STATICFILES_DIRS = [
-#    os.path.join(BASE_DIR, 'catalog/static'),
-# ]
-# STATIC_URL='https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
-# ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
-# STATICFILES_FINDERS = ('django.contrib.staticfiles.finders.FileSystemFinder', 'django.contrib.staticfiles.finders.AppDirectoriesFinder',)
-# AWS_DEFAULT_ACL = None
-# AWS_PRELOAD_METADATA=True
-# SECURE_SSL_REDIRECT = True
+AWS_LOCATION = 'static'
+AWS_ACCESS_KEY_ID = CONFIG['AWS_ACCESS_KEY_ID']
+AWS_SECRET_ACCESS_KEY = CONFIG['AWS_SECRET_ACCESS_KEY']
+AWS_STORAGE_BUCKET_NAME = CONFIG['AWS_STORAGE_BUCKET_NAME']
+AWS_S3_CUSTOM_DOMAIN='%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+DEFAULT_FILE_STORAGE = 'virtualCocktailApp.storage_backends.MediaStorage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_DIRS = [
+   os.path.join(BASE_DIR, 'catalog/static'),
+]
+STATIC_URL='https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
+STATICFILES_FINDERS = ('django.contrib.staticfiles.finders.FileSystemFinder', 'django.contrib.staticfiles.finders.AppDirectoriesFinder',)
+AWS_DEFAULT_ACL = None
+AWS_PRELOAD_METADATA=True
+SECURE_SSL_REDIRECT = True
 
 ## == MEDIA ROOT SETTINGS - leave in for both dev and prod
 
