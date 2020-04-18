@@ -48,6 +48,9 @@ block in any subsequent page (to update the text to be page-specific) -->
   <!-- google icons for use in nav bar -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
+  <!--  PWA manifest file -->
+  <link rel="manifest" href="/static/manifest.json">
+
 </head>
 
 <body>
@@ -101,6 +104,15 @@ Each page extends this template and pipes in content within the content block
     function closeNav() {
         document.getElementById("overlay").style.display = "none";
     }
+</script>
+
+<!--  PWA service worker update -->
+<script>
+ if (!navigator.serviceWorker.controller) {
+     navigator.serviceWorker.register("/sw.js").then(function(reg) {
+         console.log("Service worker has been registered for scope: " + reg.scope);
+     });
+ }
 </script>
 
 </body>
