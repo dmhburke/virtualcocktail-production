@@ -5,7 +5,7 @@
   "background_color": "#0d19c2",
   "display": "standalone",
   "scope": "/",
-  "start_url": "https://www.virtualcocktail.org",
+  "start_url": "/templates/businesslist.html",
   "icons": [
     {
       "src": "https://db-virtualcocktail-production.s3.amazonaws.com/vcoIcon.png",
