@@ -3,7 +3,7 @@
   "short_name": "The Virtual Cocktail",
   "theme_color": "#f75a84",
   "background_color": "#0d19c2",
-  "display": "fullscreen",
+  "display": "standalone",
   "scope": "/",
   "start_url": "https://www.virtualcocktail.org",
   "icons": [
