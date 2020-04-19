@@ -31,10 +31,6 @@ block in any subsequent page (to update the text to be page-specific) -->
     type="image/png"
     href="https://db-virtualcocktail-production.s3.amazonaws.com/vcoIcon.png"> <!--Best practice to save the icon (in png format) to an S3 bucket and point to that-->
 
-<!-- HOMESCREEN APP: This section defines an icon to show on your mobile homescreen -->
-<link rel="apple-touch-icon"
-    href="https://db-virtualcocktail-production.s3.amazonaws.com/vcoIcon.png"> <!--Best practice to save the icon (in png format) to an S3 bucket and point to that-->
-
     <!--Braintree/Venmo payments SDK-->
   <script src="https://js.braintreegateway.com/web/dropin/1.22.1/js/dropin.min.js"></script>
 	<script src="https://js.braintreegateway.com/web/3.59.0/js/client.min.js"></script>
@@ -47,14 +43,22 @@ block in any subsequent page (to update the text to be page-specific) -->
   <!-- google icons for use in nav bar -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-  <!--  PWA manifest file -->
-  <link rel="manifest" href="{% static 'manifest.json' %}">
-  <!-- PWA iOS enable standalone -->
-  <meta name="theme-color" content="#f75a84">
+  <!-- PWA DETAILS -->
+  <!-- Homescreen icon: This section defines an icon to show on your mobile homescreen -->
+  <link rel="apple-touch-icon"
+      href="https://db-virtualcocktail-production.s3.amazonaws.com/vcoIcon.png"> <!--Best practice to save the icon (in png format) to an S3 bucket and point to that-->
+
+  <!-- Enable PWA -->
   <meta name="apple-mobile-web-app-capable" content="yes">
+
   <!-- PWA iOS enable status bar override -->
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link href="https://db-virtualcocktail-production.s3.amazonaws.com/vcoIcon.png" sizes="1125x2436" rel="apple-touch-startup-image" />
+
+  <!-- PWA iOS splashscreen -->
+  <link
+  rel="apple-touch-startup-image"
+  media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"
+  href="https://db-virtualcocktail-production.s3.amazonaws.com/vcoIcon.png"/>
 
 </head>
 
