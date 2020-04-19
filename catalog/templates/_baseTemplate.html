@@ -54,10 +54,10 @@ block in any subsequent page (to update the text to be page-specific) -->
 <meta name="theme-color" content="#f75a84">
 <!-- PWA iOS enable status bar override -->
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<!-- iOS splashscreen -->
+<!-- iOS splashscreen (not working)-->
 <link
     rel="apple-touch-startup-image"
-    media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"
+    media="screen and (device-width: 375px) and (device-height: 812px) and (orientation: portrait)"
     href="https://db-virtualcocktail-production.s3.amazonaws.com/vco_splash-iphoneX.png"
   />
 
@@ -114,6 +114,21 @@ Each page extends this template and pipes in content within the content block
     function closeNav() {
         document.getElementById("overlay").style.display = "none";
     }
+</script>
+
+<script>
+// Detects if device is on iOS
+const isIos = () => {
+  const userAgent = window.navigator.userAgent.toLowerCase();
+  return /iphone|ipad|ipod/.test( userAgent );
+}
+// Detects if device is in standalone mode
+const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
+
+// Checks if should display install popup notification:
+if (isIos() && !isInStandaloneMode()) {
+  this.setState({ showInstallMessage: true });
+}
 </script>
 
 </body>
