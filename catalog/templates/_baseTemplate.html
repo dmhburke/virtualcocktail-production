@@ -102,7 +102,7 @@ Each page extends this template and pipes in content within the content block
 
   {% endblock %}
 
-  <div class="testprompt">test</div>
+  <div id="testprompt">test</div>
   </div>
 
   <div class="footer"></div>
@@ -115,7 +115,7 @@ Each page extends this template and pipes in content within the content block
     function closeNav() {
         document.getElementById("overlay").style.display = "none";
     }
-    
+
     // Detects if device is on iOS
     const isIos = () => {
       const userAgent = window.navigator.userAgent.toLowerCase();
