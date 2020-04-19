@@ -102,6 +102,7 @@ Each page extends this template and pipes in content within the content block
 
   {% endblock %}
 
+  <div class="testprompt">test</div>
   </div>
 
   <div class="footer"></div>
@@ -127,7 +128,8 @@ const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.n
 
 // Checks if should display install popup notification:
 if (isIos() && !isInStandaloneMode()) {
-  this.setState({ showInstallMessage: true });
+  // this.setState({ showInstallMessage: true });
+  document.getElementById("testprompt").style.color = "green";
 }
 </script>
 
