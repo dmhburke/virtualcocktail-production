@@ -5,21 +5,23 @@
 {% load static %}
 
 <div class="margin-wrapper">
+  <!-- Header text -->
   <div class="home-explainer">
     Click below to donate to your favorite small businesses
     </div>
   <div class="search-bar">
-    <!-- Form for business search -->
+
+  <!-- Form for business search -->
     <form id="search-query" method="POST">
       {% csrf_token %}
       <div class="search-input">
-        <!-- <input type="input" class="search-form" id="search-form" name="{{form.find_business}}" placeholder="Find by name or filter by postcode"> -->
         <div id=search-form style="height: 100%; width: 100%; display: inline-block">{{form.find_business}}</div>
         <button type="submit" class="search-button" id="search">Search</button>
       </div>
     </form>
   </div>
 
+<!-- Tiles for business results -->
   <div class="results-container">
     <div class="row">
     {% for business in business_list %}
@@ -34,7 +36,7 @@
      </a>
      </div>
      {% endfor %}
-
+     <!-- end tile for submit business -->
       <div class="rest-card">
         <a href="submitbusiness">
           <div class="rest-block">
@@ -42,19 +44,18 @@
             <div class="rest-name">Not listed yet?</div>
             <div class="add-link">Click here to add!</div>
         </div>
+        </a>
       </div>
-      </a>
     </div>
-
-
   </div>
-
-
-
-
+  <!-- END business tiles -->
 </div>
+<!-- END margin wrapper -->
 
-<div id="promptInstall">test</div>
+<div id="promptInstall">
+  <div id="closeInstall" onclick="closePrompt()">X</div>
+  <img id=installPromptImg src="https://db-virtualcocktail-production.s3.amazonaws.com/installPrompt1.png">
+  </div>
 
 <script>
   // Detects if device is on iOS
@@ -68,8 +69,14 @@
   // Checks if should display install popup notification:
   if (isIos() && !isInStandaloneMode()) {
     // this.setState({ showInstallMessage: true });
-    document.getElementById("promptInstall").style.color = "green";
+    document.getElementById("promptInstall").style.display = "block";
   }
+
+  function closePrompt() {
+      document.getElementById("installPromptImg").style.display = "none";
+      document.getElementById("closeInstall").style.display = "none";
+  }
+
 </script>
 
 
