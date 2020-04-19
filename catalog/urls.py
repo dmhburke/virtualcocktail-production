@@ -14,5 +14,7 @@ urlpatterns = [
     path('submitbusinessconfirm', views.submitbusinessconfirm, name='submitbusinessconfirm'),
     # ABOUT US - menu dropdown page
     path('aboutus', views.aboutus, name='aboutus'),
+    # PWA TEST
+    path('', views.serviceworker.as_view(), name='sw'),
 
 ]

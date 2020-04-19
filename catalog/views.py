@@ -199,3 +199,9 @@ def aboutus(request):
     context={}
 
     return render(request, 'about.html', context=context)
+
+from django.views.generic.base import TemplateView
+
+class serviceworker(TemplateView):
+
+    template_name = "sw.js"
