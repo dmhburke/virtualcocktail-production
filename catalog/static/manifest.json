@@ -1,0 +1,17 @@
+{
+    "name": "The Virtual Cocktail",
+    "short_name": "Virtual Cocktail",
+    "start_url": "127.0.0.1",
+    "scope": "/",
+    "display": "standalone",
+    "background_color": "#FFF",
+    "theme_color": "#0d19c2",
+    "description": "Test app for Django and PWA",
+    "dir": "ltr",
+    "lang": "en-US",
+    "icons":[{
+        "src": "https://db-virtualcocktail-production.s3.amazonaws.com/vcoIcon.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }]
+}
