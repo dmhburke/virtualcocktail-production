@@ -38,7 +38,13 @@ button {
 appearance: none;
 }
 
+body {
+  background-color: var(--brandColorMain);
+}
 
+.main {
+  background-color: white;
+}
 
 ::-webkit-input-placeholder {
   font-family: var(--textFont);
