@@ -34,8 +34,8 @@ button {
   font-family: var(--textFont);
   max-width: 400px;
   -webkit-appearance: none;
--moz-appearance: none;
-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 body {
@@ -43,15 +43,61 @@ body {
 }
 
 #promptInstall {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  height: 50px;
-  width: 50px;
-  visibility: visible;
-  background-color: grey;
+  position: fixed;
+  z-index: 100px;
+  bottom: 200px;
+  left: 30px;
+  height: 70px;
+  width: 320px;
+  display: none;
   color: red;
+  /* background-color: green; */
 }
+
+#closeInstall {
+  position: absolute;
+  display: block;
+  top: 5px;
+  left: 5px;
+  height: 20px;
+  width: 20px;
+  border-radius: 100%;
+  background-color: black;
+  text-align: center;
+  background-color: var(--brandColorMain);
+  color: white;
+  font-size: 12px;
+  line-height: 20px;
+  font-family: verdana;
+}
+
+#installPromptImg {
+  width: 300px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 10px;
+
+}
+
+#installBox {
+  height: 40px;
+  width: 300px;
+  background-color: rgba(242, 242, 242, .9);
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+#triangleDown {
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 16px solid rgba(242, 242, 242, .9);
+  margin: 0 auto;
+
+}
+
+
 
 .main {
   background-color: white;
@@ -105,6 +151,7 @@ body {
     max-width: 1000px;
     margin: auto;
     text-align: center;
+    height: 600px;
 }
 .margin-wrapper-form {
     padding-left: 5%;
