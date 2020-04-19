@@ -45,7 +45,7 @@ body {
 #promptInstall {
   position: fixed;
   z-index: 100px;
-  bottom: 200px;
+  bottom: 70px;
   left: 30px;
   height: 70px;
   width: 320px;
